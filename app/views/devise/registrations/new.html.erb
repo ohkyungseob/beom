@@ -1,25 +1,82 @@
-<h2>Sign up</h2>
+<style>
+	#box00{
+		text-align:center;
+		font-family: Dotum,'돋움',Helvetica,sans-serif;
+        font-size: 14px;
+		font-weight: bold; 
+		margin-top: 20px;
+	}
+	.logo {
+    display: inline-block;
+    margin-top: 111px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    width: 244px;
+    height: 49px;
+	background-image: url(https://ssl.pstatic.net/static/nid/login/m_sp_00_common_c860f0da.png);
+    background-size: 244px 92px;
+}
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+#email2{
+	padding: 10px 10px 10px 10px;
+}
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+
+</style>
+
+
+<a href="https://www.naver.com" class="logo">
+            </a>
+<div id="box00">
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field" id="email2">
+    <%= f.label :이메일 %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email"  %><br />
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+  <div class="field" id="email2">
+    <%= f.label :비밀번호 %>
+    <% if @minimum_password_length %>
+    <th>(<%= @minimum_password_length %>자 이상)</th><br />
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password" %><br />
+  </div>
+
+  <div class="field" id="email2">
+    <%= f.label :비밀번호확인 %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %><br />
+  </div>
+
+  <div id="email2">
+    <%= f.label :이름 %>
+    <%= f.text_field :name, :required => true  %>
+  </div>
+
+  <div class="btn-group" data-toggle="buttons" id="email2">
+    <p style="margin-top:0;margin-bottom:0;"><%= f.label :성별 %></p><br />
+    <label class="radio_button"> 남자
+       <%= f.radio_button :gender, '남자', checked: true %>
+    </label>
+    <label class="radio_button active"> 여자
+       <%= f.radio_button :gender, '여자', checked: true %>
+    </label>
+   </div>
+
+   <div class="form-group" id="email2">
+    <%= f.label :생년월일 %>
+    <%= f.date_field :birth, autofocus: true, class: 'form-control' %>
+   </div>
+
+   <div id="email2">
+    <%= f.label :전화번호 %>
+    <th>(000-0000-0000)</th><br />
+    <%= f.text_field :phonenumber, :required => true  %>
+   </div>
+
+  <div class="actions" id="email2">
+    <%= f.submit "가입하기" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
+		</div>

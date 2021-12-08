@@ -1,20 +1,56 @@
-<h2>Log in</h2>
+<style>
+	#box00{
+		text-align:center;
+		font-family: Dotum,'돋움',Helvetica,sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+	}
+	.logo {
+    display: inline-block;
+    margin-top: 111px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    width: 244px;
+    height: 49px;
+	background-image: url(https://ssl.pstatic.net/static/nid/login/m_sp_00_common_c860f0da.png);
+    background-size: 244px 92px;
+}
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+#email{
+	padding: 20px 20px 20px 20px;
+}
+
+</style>
+<div id="box00">
+
+
+<a href="https://www.naver.com" class="logo">
+            </a>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field" id="email">
+    <%= f.label :이메일 %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
+  <div class="field" id="email">
+    <%= f.label :비밀번호 %>
+    <%= f.password_field :password, autocomplete: "current-password" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field" id="email">
+      <%= f.check_box :remember_me %>
+		<%= f.label :비밀번호_기억하기 %>
+    </div>
+  <% end %>
+	
+
+  <div class="actions" id="email">
+    <%= f.submit "로그인" %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+	
+	</div>

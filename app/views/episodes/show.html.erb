@@ -659,7 +659,9 @@
 		<h4>댓글<%= @comment2s.size %>개</h4>
 		<ul>
 			<% @comment2s.each do |comment2| %>
-			<li><td><%= comment2.usercomment2 %></li>
+			<li><%= comment2.usercomment2 %></li>
+			<li><%= comment2.created_at %></li><br />
+			
 		<% end %>
 		</ul>
 		
