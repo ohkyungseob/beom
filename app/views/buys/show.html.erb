@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="all">
+<div class="area_content_box">
+                
+                <div class="area_my_cookie">쿠키 <span><%= @episode.cookiecount %></span>개 결제</div>
+                
+                <div class="area_buy"><strong class="this_text_work"><%= @webtoon.webtoonname %></strong> <%= @episode.round %>화를 구매합니다. </div>
+
+                
+
+                
+            </div>
+	
+<button type="button" class="area_button _continueUseTicket(COMIC,6820896,450115,23,LEND,PASS,)">
+	<a href="/episodes/7">
+                    <span class="area_button_inner">
+						
+                        <strong class="this_text_title">결제</strong>
+                        <span class="this_text_content">쿠키 <span><%= @episode.cookiecount %></span>개</span>
+
+                    </span></a>
+                    </button>
+	<a href="/webtoons/2">
+<button type="button" class="area_button1 _continueUseTicket(COMIC,6820896,450115,23,BUY,PASS,)">
+                    <span class="area_button_inner">
+						<strong class="this_text_title">취소</strong></span></a>
+                      
+       
+                    </button
+	</span>
+	</span>
+	</button>
+</div>
+
+<p>
+  <strong>Webtoon:</strong>
+  <%= @buy.webtoon %>
+</p>
+
+<p>
+  <strong>Episode:</strong>
+  <%= @buy.episode %>
+</p>
+
+<%= link_to 'Edit', edit_buy_path(@buy) %> |
+<%= link_to 'Back', buys_path %>

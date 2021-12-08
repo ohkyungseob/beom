@@ -1,0 +1,17 @@
+<%= form_with(model: buy, local: true) do |form| %>
+
+
+  <div class="field">
+    <%= form.label :webtoon_id %>
+    <%= form.text_field :webtoon_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :episode_id %>
+    <%= form.text_field :episode_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

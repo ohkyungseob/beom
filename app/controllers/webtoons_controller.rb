@@ -10,6 +10,9 @@ class WebtoonsController < ApplicationController
   def show
 	  @episodes = Episode.all
 	  @episode = Episode.new
+	  @buys = Buy.all
+	  @buy = Buy.new
+
   end
 
   # GET /webtoons/new

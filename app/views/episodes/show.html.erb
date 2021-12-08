@@ -1,34 +1,656 @@
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Round:</strong>
-  <%= @episode.round %>
-</p>
+<style>
+#aa1{
+	 text-align:justify;
+	}
+	#var {
+		vertical-align: 1000px;
+		font-size: 30px;
+	}
+</style>
 
-<p>
-  <strong>Cookiecount:</strong>
-  <%= @episode.cookiecount %>
-</p>
+<!DOCTYPE html>
+<div id='aa1'>
 
-<p>
-  <strong>Registration:</strong>
-  <%= @episode.registration %>
-</p>
+<html lang="ko">
+	<head>
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<p>
-  <strong>Content:</strong>
-  <%= @episode.content %>
-</p>
+		<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+		<title>참교육 :: 네이버 만화</title>
 
-<p>
-  <strong>Scope:</strong>
-  <%= @episode.scope %>
-</p>
+		<meta property="og:title" content="참교육" />
+		<meta
+			property="og:image"
+			content="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG19_67290a02-fe7f-448d-aed9-6ec88e558088.jpg"
+		/>
+		<meta
+			property="og:description"
+			content="무너진 교권을 지키기 위해 교권보호국 소속 나화진의 참교육이 시작된다!&lt;부활남&gt; 채용택 작가 X &lt;신석기녀&gt; 한가람 작가의 신작!"
+		/>
 
-<p>
-  <strong>Webtoon:</strong>
-  <%= @episode.webtoon %>
-</p>
+		<meta
+			property="og:url"
+			content="https://comic.naver.com/webtoon/list?titleId=758037&amp;weekday=mon"
+		/>
+		<meta property="og:type" content="article" />
+		<meta property="og:article:author" content="네이버 웹툰" />
+		<meta property="og:article:author:url" content="https://comic.naver.com" />
 
-<%= link_to 'Edit', edit_episode_path(@episode) %> |
-<%= link_to 'Back', episodes_path %>
+		<link
+			rel="shortcut icon"
+			href="https://ssl.pstatic.net/static/comic/favicon/webtoon_favicon_32x32.ico"
+			type="image/x-icon"
+		/>
+
+		<script type="text/javascript">
+			document.domain = 'naver.com';
+		</script>
+		<link rel="stylesheet" style="text/css" href="/css/comic/comic_20211206150112.css" />
+
+		<!-- comicArticleListJsFile -->
+		<script
+			type="text/javascript"
+			src="/aggregate/javascript/release/comic_article_list_20211206150112.js"
+			charset="utf-8"
+		></script>
+
+		<script type="text/javascript">
+			// nclick
+
+			//<![CDATA[
+			var g_ssc = 'decide.me';
+			var levelName = 'WEBTOON';
+			if (levelName == 'BEST_CHALLENGE') {
+				g_ssc = 'comic.best_list';
+			} else if (levelName == 'CHALLENGE') {
+				g_ssc = 'comic.chal_list';
+			} else if (levelName == 'WEBTOON') {
+				g_ssc = 'comic.toon_list';
+			}
+
+			var ccsrv = 'cc.naver.com';
+			//]]>
+		</script>
+		<script type="text/javascript">
+			var isLogin = false;
+			var levelName = 'webtoon';
+
+			var artistData = [
+				{ artistId: 301243, nickname: '채용택' },
+				{ artistId: 314484, nickname: '한가람' },
+			];
+
+			var actionRunner;
+
+			WebtoonArtistActionRunner = $Class({
+				$init: function (titleId) {
+					this._titleId = titleId;
+				},
+
+				//관심 웹툰 추가
+				addFavoriteWebtoon: function (titleId, event) {
+					var width = screen.width / 2 - 800;
+					var height = screen.height / 2 - 510;
+					var favoriteUrl = null;
+					var addUrl =
+						'https://' +
+						location.hostname +
+						'/mypage/favoriteTitleAdd?titleId=' +
+						titleId;
+					var removeUrl =
+						'https://' +
+						location.hostname +
+						'/mypage/favoriteTitleRemove?titleId=' +
+						titleId;
+					if ($Element(jindo.$$.getSingle('.book_maker')).hasClass('on')) {
+						favoriteUrl = removeUrl;
+						nclk_v2(event, 'inf.zzimdel');
+					} else {
+						favoriteUrl = addUrl;
+						nclk_v2(event, 'inf.zzim');
+					}
+
+					if (isLogin) {
+						var favoritePopup = window.open(
+							'',
+							'addFavorite',
+							'directories=no,toolbar=no,scrollbars=yes,width=370,height=180,top=' +
+								height +
+								',left=' +
+								width
+						);
+						favoritePopup.location.href = favoriteUrl;
+					} else {
+						location.href = '/common/login?url=' + encodeURIComponent(location.href);
+					}
+				},
+
+				artistForArtistTitle: function (element) {
+					$Element('author_layer_inner').html('');
+					$Element('author_layer').css('border', '');
+					$Element('author_layer_inner').css('border', '1px solid #b6b6b6');
+					if (artistData.length == 0) {
+						var liElement = new $Element('<li>');
+						var spanElement = new $Element('<span>');
+						spanElement.html('작가의 다른 작품이 없습니다.');
+						liElement.append(spanElement);
+						$Element('author_layer_inner').append(liElement);
+						artistLayer.show(element);
+					} else if (artistData.length == 1) {
+						location.href = '/artistTitle?artistId=' + artistData[0].artistId;
+					} else {
+						for (var i = 0; i < artistData.length; i++) {
+							var liElement = new $Element('<li>');
+							var aElement = new $Element('<a>');
+							aElement.attr(
+								'href',
+								'/artistTitle?artistId=' + artistData[i].artistId
+							);
+							aElement.html('&lt;' + artistData[i].nickname + '&gt;의 다른작품');
+							liElement.append(aElement);
+							$Element('author_layer_inner').append(liElement);
+							if (i == 9) {
+								$Element('author_layer').css('border', '1px solid #b6b6b6');
+								$Element('author_layer_inner').css('border', '0');
+							}
+						}
+						artistLayer.show(element);
+					}
+					return false;
+				},
+			});
+
+			var bRolling = false;
+			var oAdBannerFlicking = null;
+			var adBannerInterval = null;
+
+			function loadThisWindow() {
+				actionRunner = new WebtoonArtistActionRunner('758037');
+
+				(function (oData) {
+					window.__oLikeItData = oData;
+					var s = document.createElement('script');
+					s.type = 'text/javascript';
+					s.charset = 'utf-8';
+					s.src =
+						oData.domain +
+						'/static/js/likeIt.v2.desktop.init.js?v=' +
+						new Date().toDateString().replace(/\s/g, '');
+					(document.head || document.getElementsByTagName('head')[0]).appendChild(s);
+				})({
+					serviceId: 'COMIC',
+					displayId: 'COMIC',
+					contentId: '758037',
+					domain: 'https://comic.like.naver.com',
+					lang: 'ko',
+					viewType: '',
+
+					countCallbackYn: 'Y',
+					rparam: encodeURIComponent('deviceCode=PC'),
+				});
+
+				if (levelName == 'bestChallenge') {
+					function potenupArea() {
+						if ($Element('potenupAreaBtn').className() == 'btn_potenup') {
+							$Element('potenupAreaBtn').className(
+								$Element('potenupAreaBtn').className() + ' on'
+							);
+						} else {
+							$Element('potenupAreaBtn').className('btn_potenup');
+						}
+					}
+
+					$Fn(potenupArea).attach($Element('potenupAreaBtn'), 'click');
+
+					$Fn(potenupArea).attach($Element('potenupAreaCloseBtn'), 'click');
+				}
+
+				if (jQuery('#mflick1')) {
+					var $j = jQuery.noConflict();
+
+					if ($j('#mflick1').length > 0) {
+						oAdBannerFlicking = new eg.Flicking(jQuery('#mflick1'), {
+							duration: 300,
+							circular: true,
+							defaultIndex: 0,
+						});
+						jQuery('._adBanner').show();
+						rollingAdBanner();
+
+						jQuery(window).scroll(function () {
+							var nExposureControlPosition =
+								jQuery('#mflick1').offset().top + jQuery('#mflick1').height();
+							if (window.scrollY > nExposureControlPosition) {
+								window.clearInterval(adBannerInterval);
+								bRolling = false;
+							} else {
+								if (!bRolling) {
+									rollingAdBanner();
+								}
+							}
+						});
+					}
+				}
+			}
+
+			function rollingAdBanner() {
+				if (!bRolling) {
+					adBannerInterval = setInterval(function () {
+						var statViewUrl = oAdBannerFlicking.getNextElement().data('url');
+						callWebAdBannerView(statViewUrl);
+						oAdBannerFlicking.next();
+					}, 2000);
+					bRolling = true;
+				}
+			}
+
+			function callWebAdBannerView(sStatsUrl) {
+				var self = this;
+				var nTimestamp = new Date().getTime();
+
+				jQuery.ajax({
+					type: 'GET',
+					url: sStatsUrl + '&_dummy=' + nTimestamp,
+					async: false,
+					timeout: self._nAjaxCallTimeout,
+				});
+			}
+
+			function callWebAdBannerClick(sStatsUrl, sTargetUrl) {
+				var self = this;
+				var nTimestamp = new Date().getTime();
+
+				jQuery.ajax({
+					type: 'GET',
+					url: sStatsUrl + '&_dummy=' + nTimestamp,
+					async: false,
+					timeout: self._nAjaxCallTimeout,
+					complete: function () {
+						window.open(sTargetUrl, '_blank');
+					},
+				});
+			}
+
+			$Fn(loadThisWindow).attach(window, 'load');
+
+			/**
+			 * 시리즈로 이동 가능한지 확인해서 이동
+			 *
+			 * @params nbooksId {String} 북스 상품 ID
+			 */
+			function moveBookstore(nbooksId) {
+				var result;
+
+				jQuery.ajax({
+					method: 'GET',
+					url: '/api/checkTitleInSeries?nbooksId=' + nbooksId,
+					async: false,
+					success: function (res) {
+						result = res.isExist;
+					},
+				});
+
+				var oInterval = setInterval(function () {
+					if (result) {
+						window.open(
+							'https://series.naver.com/comic/detail.series?originalProductId=' +
+								nbooksId,
+							'_blank'
+						);
+					} else {
+						alert('시리즈에 상품을 등록 중입니다. 잠시만 기다려주세요.');
+					}
+					clearInterval(oInterval);
+					oInterval = null;
+				}, 200);
+			}
+		</script>
+
+		<script
+			type="text/javascript"
+			src="/aggregate/javascript/release/comic_gnb_20211206150112.js"
+		></script>
+	</head>
+
+	<body onload="">
+		<div id="wrap" class="end_page">
+			<div id="u_skip">
+				<a
+					href="#menu"
+					onclick="document.getElementById('menu').tabIndex=-1;document.getElementById('menu').focus();return false;"
+					><span>메인 메뉴로 바로가기</span></a
+				>
+				<a
+					href="#content"
+					onclick="document.getElementById('content').tabIndex=-1;document.getElementById('content').focus();return false;"
+					><span>본문으로 바로가기</span></a
+				>
+			</div>
+
+			<div id="header_wrap">
+				<div id="header">
+					<div id="gnb">
+						<script type="text/javascript">
+							var gnb_option = {
+								gnb_service: 'comic',
+								gnb_logout: encodeURIComponent(window.location.href),
+								gnb_login: encodeURIComponent(window.location.href),
+								gnb_template: 'gnb_utf8',
+								gnb_brightness: 1,
+								gnb_item_hide_option: 0,
+							};
+						</script>
+						<script
+							type="text/javascript"
+							charset="utf-8"
+							src="https://ssl.pstatic.net/static.gn/templates/gnb_utf8?20211206150112"
+						></script>
+					</div>
+					<div id="snb_wrap">
+						<h1>
+							<a
+								onclick="nclk_v2(event,'STA.naverlogo')"
+								href="https://www.naver.com"
+								title="NAVER"
+								class="Ntxt_naver"
+								>NAVER</a
+							>
+							<a
+								onclick="nclk_v2(event,'STA.comic')"
+								href="/naverwebtoon"
+								title="만화"
+								class="Ntxt_comic"
+								>만화</a
+							>
+							<em class="bar">|</em>
+							<a
+								onclick="nclk_v2(event,'STA.novel')"
+								href="https://novel.naver.com"
+								title="웹소설"
+								class="Ntxt_novel"
+								>웹소설</a
+							>
+						</h1>
+
+						<form id="searchForm" name="search" method="get" action="/search">
+							<fieldset>
+								<legend>검색</legend>
+								<div class="snb_search_box">
+									<div class="snb_search_box_sub">
+										<!-- [D] 클릭시 label.ph 텍스트 삭제해주세요. -->
+										<label class="ph" for="gnb.keyword"
+											>제목/작가로 검색할 수 있습니다.</label
+										>
+										<input
+											type="text"
+											id="gnb.keyword"
+											name="keyword"
+											value=""
+											title="검색어 입력"
+											maxlength="18"
+											class="snb_search_text"
+										/>
+										<button
+											type="button"
+											class="btn_search"
+											id="search_bar_button"
+											onclick="nclk_v2(event,'STA.search')"
+											title="검색"
+											alt="검색"
+										>
+											<span class="Nico_search">검색</span>
+										</button>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+
+					<div id="author_layer" style="text-align: left; display: none;">
+						<ul id="author_layer_inner">
+							&nbsp;
+						</ul>
+					</div>
+
+					<div class="notice_info">
+						<span class="blind">공지사항</span>
+						<div class="rolling">
+							<div class="notice_rolling">
+								<li>
+									<a
+										onclick="nclk_v2(event,'STA.txt')"
+										href="https://comic.naver.com/webtoon/list.nhn?titleId=785250"
+										title="모솔 서브남 연애시키기 &lt;원작은 완결난 지 한참 됐습니다만&gt;"
+									>
+										<span class="Nico_notice"></span>
+										모솔 서브남 연애시키기 &lt;원작은 완결난 지 한참
+										됐습니다만&gt;
+									</a>
+								</li>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="menu">
+					<ul class="menu">
+						<!-- [D] 선택된 li에 current 클래스 추가 -->
+						<li>
+							<a onclick="nclk_v2(event,'LNB.home');" href="/naverwebtoon"
+								><span class="Ntxt_home">웹툰 홈</span></a
+							>
+						</li>
+						<li class="current">
+							<a onclick="nclk_v2(event,'LNB.toon');" href="/naverwebtoon"
+								><span class="Ntxt_webtoon">웹툰</span></a
+							>
+						</li>
+
+						<li>
+							<a onclick="nclk_v2(event,'LNB.my');" href="/mypage"
+								><span class="Ntxt_mypage">마이페이지</span></a
+							><span class="bar"></span>
+						</li>
+					</ul>
+					<h2 class="blind">웹툰</h2>
+				</div>
+				<!-- //상단 메뉴 /webtoon/list-->
+
+				<div id="submenu">
+					<!--서브메뉴-->
+					<ul class="submenu">
+						<!-- [D] 선택된 li에 on 클래스 추가 -->
+						<li class="on">
+							<a onclick="nclk_v2(event,'tab.weekday')" href="/webtoon/weekday"
+								><span class="Ntxt_menu_date">요일별</span></a
+							>
+						</li>
+						<li>
+							<a onclick="nclk_v2(event,'tab.genre')" href="/webtoon/genre"
+								><span class="Ntxt_menu_genre">장르별</span></a
+							>
+						</li>
+						<li>
+							<a onclick="nclk_v2(event,'tab.creation')" href="/webtoon/creation"
+								><span class="Ntxt_menu_art">작품별</span></a
+							>
+						</li>
+						<li>
+							<a onclick="nclk_v2(event,'tab.artist')" href="/webtoon/artist"
+								><span class="Ntxt_menu_author">작가별</span></a
+							>
+						</li>
+						<li>
+							<a onclick="nclk_v2(event,'tab.period')" href="/webtoon/period"
+								><span class="Ntxt_menu_year">연도별</span></a
+							>
+						</li>
+						<li>
+							<a onclick="nclk_v2(event,'tab.theme')" href="/webtoon/theme"
+								><span class="Ntxt_menu_theme">테마웹툰</span></a
+							>
+						</li>
+						<li>
+							<a onclick="nclk_v2(event,'tab.finish')" href="/webtoon/finish"
+								><span class="Ntxt_menu_end">완결웹툰</span></a
+							>
+						</li>
+					</ul>
+					<!--//서브메뉴-->
+				</div>
+			</div>
+			<!-- 상단 영역(메인에만 나감.) -->
+
+			<!-- //상단 영역 -->
+	
+			<div id="container" class="">
+				<div id="content" class="webtoon">
+					<ul class="category_tab">
+						<li class="">
+							<a onclick="nclk_v2(event,'dna.all')" href="/webtoon/weekday"
+								>요일전체</a
+							>
+						</li>
+						<li class="on">
+							<a
+								onclick="nclk_v2(event,'dna.monday')"
+								href="/webtoon/weekdayList?week=mon"
+								>월요웹툰</a
+							>
+						</li>
+						<li class="">
+							<a
+								onclick="nclk_v2(event,'dna.tuesday')"
+								href="/webtoon/weekdayList?week=tue"
+								>화요웹툰</a
+							>
+						</li>
+						<li class="">
+							<a
+								onclick="nclk_v2(event,'dna.wednesday')"
+								href="/webtoon/weekdayList?week=wed"
+								>수요웹툰</a
+							>
+						</li>
+						<li class="">
+							<a
+								onclick="nclk_v2(event,'dna.thursday')"
+								href="/webtoon/weekdayList?week=thu"
+								>목요웹툰</a
+							>
+						</li>
+						<li class="">
+							<a
+								onclick="nclk_v2(event,'dna.friday')"
+								href="/webtoon/weekdayList?week=fri"
+								>금요웹툰</a
+							>
+						</li>
+						<li class="">
+							<a
+								onclick="nclk_v2(event,'dna.saturday')"
+								href="/webtoon/weekdayList?week=sat"
+								>토요웹툰</a
+							>
+						</li>
+						<li class="">
+							<a
+								onclick="nclk_v2(event,'dna.sunday')"
+								href="/webtoon/weekdayList?week=sun"
+								>일요웹툰</a
+							>
+						</li>
+					</ul>
+
+					<!-- body -->
+					<!-- 상세 정보영역 -->
+					<div class="comicinfo" style="">
+						<div class="thumb">
+							<a
+								onclick="nclk_v2(event,'inf.img')"
+								href="/webtoon/list?titleId=758037"
+							>
+								<img
+									src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG06_794bcc1e-23aa-4c35-a335-b5d21b4bc2ab.jpg"
+									title="참교육"
+									alt="참교육"
+									width="125"
+									height="101"
+									onERROR="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/non125_101.gif'"
+								/>
+								<span class="mask"></span>
+							</a>
+						</div>
+						<div class="detail">
+							<% @webtoons.each do |webtoon| %>
+							<h2>
+								<%= webtoon.webtoonname %><span class="wrt_nm">
+									<%= webtoon.author %></span
+								>
+							</h2>
+							<p><%= webtoon.summary %></p>
+
+							<p class="detail_info">
+								<span class="genre"> <%= webtoon.genre %></span
+								><span class="age"> <%= webtoon.agelimit %>세 이용가</span>
+							</p>
+							<% end %>
+							
+							<ul class="btn_group">
+								<li>
+									<a
+										href="#"
+										onclick="return actionRunner.addFavoriteWebtoon('758037', event);"
+										title="관심웹툰"
+										class="book_maker"
+										><span>관심웹툰</span></a
+									>
+								</li>
+								<li>
+									<a
+										href="#"
+										onclick="nclk_v2(event,'inf.first');return checkServiceCode('S00','1')"
+										title="첫회보기"
+										class="first"
+										><span>첫회보기</span></a
+									>
+								</li>
+								<li>
+									<a
+										href="#"
+										onclick="nclk_v2(event,'inf.artist');return actionRunner.artistForArtistTitle(this)"
+										id="other_content"
+										title="작가의 다른 작품"
+										class="other2"
+										><span>작가의 다른 작품</span></a
+									>
+								</li>
+								<!-- [D] pre_view 클래스에 완결인 경우 end 클래스 추가 및 span에 설명 변경-->
+								<li></li>
+								<li>
+									<div class="u_likeit_module"></div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- //상세 정보영역 -->
+					<!-- 리스트 -->	
+				
+				<br><br><br><br><br><br><br><br><br><br><hr style="border: solid 10px black;"><br><br><br><br><br><br><br><br><br><br>
+					
+							<h2 id="var">
+								<%= @episode.content %>
+							</h2>
+							
+							
+	</body>
+				
+				<br><br><br><br>
+
+				
+</html>
+				
+</div>

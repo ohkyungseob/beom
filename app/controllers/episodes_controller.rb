@@ -8,6 +8,10 @@ class EpisodesController < ApplicationController
 
   # GET /episodes/1 or /episodes/1.json
   def show
+	  @buys = Buy.all
+	  @buy = Buy.new
+	  @webtoons = Webtoon.all
+	  @webtoon = Webtoon.new
   end
 
   # GET /episodes/new
