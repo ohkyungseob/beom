@@ -1,3 +1,32 @@
+<style>
+
+	#all{
+
+		font-family: '맑은 고딕';
+
+		font-weight: border;
+
+		font-size: 15px;
+
+		text-align: center;
+
+	}
+
+	#made{
+
+		font-family: '맑은 고딕';
+
+		font-weight: border;
+
+		font-size: 12px;
+
+		text-align: left;
+
+	}
+
+
+</style>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,7 +38,8 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+	<body><div id="made"><p>made by. 오경섭 조성범 김민수 강혜진</p></div>
+		<div id="all">
 	  <div>
 		  <% if user_signed_in? %>
 		          <%= link_to "로그아웃", destroy_user_session_path, method: :delete %> |
@@ -20,7 +50,7 @@
 		          <%= link_to "회원가입", "/users/sign_up" %>
 		  <% end %>
 	  </div>
-	  <hr/>
+			</div>
     <%= yield %>
   </body>
 </html>
