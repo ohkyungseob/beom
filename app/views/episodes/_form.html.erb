@@ -1,0 +1,37 @@
+<%= form_with(model: episode, local: true) do |form| %>
+
+
+  <div class="field">
+    <%= form.label :round %>
+    <%= form.number_field :round %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cookiecount %>
+    <%= form.number_field :cookiecount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :registration %>
+    <%= form.text_field :registration %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :scope %>
+    <%= form.number_field :scope %>
+  </div>
+
+  <div class="field">
+    <%= form.label :webtoon_id %>
+    <%= form.text_field :webtoon_id, value: @webtoon.id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

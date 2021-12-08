@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Webtoons</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Webtoonname</th>
+      <th>Author</th>
+      <th>Genre</th>
+      <th>Summary</th>
+      <th>Attentioncount</th>
+      <th>Day</th>
+      <th>Stardate</th>
+      <th>Agelimit</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @webtoons.each do |webtoon| %>
+      <tr>
+        <td><%= webtoon.webtoonname %></td>
+        <td><%= webtoon.author %></td>
+        <td><%= webtoon.genre %></td>
+        <td><%= webtoon.summary %></td>
+        <td><%= webtoon.attentioncount %></td>
+        <td><%= webtoon.day %></td>
+        <td><%= webtoon.stardate %></td>
+        <td><%= webtoon.agelimit %></td>
+        <td><%= link_to 'Show', webtoon %></td>
+        <td><%= link_to 'Edit', edit_webtoon_path(webtoon) %></td>
+        <td><%= link_to 'Destroy', webtoon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Webtoon', new_webtoon_path %>

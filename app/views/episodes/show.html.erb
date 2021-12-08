@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Round:</strong>
+  <%= @episode.round %>
+</p>
+
+<p>
+  <strong>Cookiecount:</strong>
+  <%= @episode.cookiecount %>
+</p>
+
+<p>
+  <strong>Registration:</strong>
+  <%= @episode.registration %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @episode.content %>
+</p>
+
+<p>
+  <strong>Scope:</strong>
+  <%= @episode.scope %>
+</p>
+
+<p>
+  <strong>Webtoon:</strong>
+  <%= @episode.webtoon %>
+</p>
+
+<%= link_to 'Edit', edit_episode_path(@episode) %> |
+<%= link_to 'Back', episodes_path %>

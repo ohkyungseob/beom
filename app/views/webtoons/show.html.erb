@@ -1,0 +1,2087 @@
+<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+		<title>참교육 :: 네이버 만화</title>
+
+		<meta property="og:title" content="참교육" />
+		<meta
+			property="og:image"
+			content="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG19_67290a02-fe7f-448d-aed9-6ec88e558088.jpg"
+		/>
+		<meta
+			property="og:description"
+			content="무너진 교권을 지키기 위해 교권보호국 소속 나화진의 참교육이 시작된다!&lt;부활남&gt; 채용택 작가 X &lt;신석기녀&gt; 한가람 작가의 신작!"
+		/>
+
+		<meta
+			property="og:url"
+			content="https://comic.naver.com/webtoon/list?titleId=758037&amp;weekday=mon"
+		/>
+		<meta property="og:type" content="article" />
+		<meta property="og:article:author" content="네이버 웹툰" />
+		<meta property="og:article:author:url" content="https://comic.naver.com" />
+
+		<link
+			rel="shortcut icon"
+			href="https://ssl.pstatic.net/static/comic/favicon/webtoon_favicon_32x32.ico"
+			type="image/x-icon"
+		/>
+
+		<script type="text/javascript">
+			document.domain = 'naver.com';
+		</script>
+		<link rel="stylesheet" style="text/css" href="/css/comic/comic_20211206150112.css" />
+
+		<!-- comicArticleListJsFile -->
+		<script
+			type="text/javascript"
+			src="/aggregate/javascript/release/comic_article_list_20211206150112.js"
+			charset="utf-8"
+		></script>
+
+		<script type="text/javascript">
+			// nclick
+
+			//<![CDATA[
+			var g_ssc = 'decide.me';
+			var levelName = 'WEBTOON';
+			if (levelName == 'BEST_CHALLENGE') {
+				g_ssc = 'comic.best_list';
+			} else if (levelName == 'CHALLENGE') {
+				g_ssc = 'comic.chal_list';
+			} else if (levelName == 'WEBTOON') {
+				g_ssc = 'comic.toon_list';
+			}
+
+			var ccsrv = 'cc.naver.com';
+			//]]>
+		</script>
+		<script type="text/javascript">
+			var isLogin = false;
+			var levelName = 'webtoon';
+
+			var artistData = [
+				{ artistId: 301243, nickname: '채용택' },
+				{ artistId: 314484, nickname: '한가람' },
+			];
+
+			var actionRunner;
+
+			WebtoonArtistActionRunner = $Class({
+				$init: function (titleId) {
+					this._titleId = titleId;
+				},
+
+				//관심 웹툰 추가
+				addFavoriteWebtoon: function (titleId, event) {
+					var width = screen.width / 2 - 800;
+					var height = screen.height / 2 - 510;
+					var favoriteUrl = null;
+					var addUrl =
+						'https://' +
+						location.hostname +
+						'/mypage/favoriteTitleAdd?titleId=' +
+						titleId;
+					var removeUrl =
+						'https://' +
+						location.hostname +
+						'/mypage/favoriteTitleRemove?titleId=' +
+						titleId;
+					if ($Element(jindo.$$.getSingle('.book_maker')).hasClass('on')) {
+						favoriteUrl = removeUrl;
+						nclk_v2(event, 'inf.zzimdel');
+					} else {
+						favoriteUrl = addUrl;
+						nclk_v2(event, 'inf.zzim');
+					}
+
+					if (isLogin) {
+						var favoritePopup = window.open(
+							'',
+							'addFavorite',
+							'directories=no,toolbar=no,scrollbars=yes,width=370,height=180,top=' +
+								height +
+								',left=' +
+								width
+						);
+						favoritePopup.location.href = favoriteUrl;
+					} else {
+						location.href = '/common/login?url=' + encodeURIComponent(location.href);
+					}
+				},
+
+				artistForArtistTitle: function (element) {
+					$Element('author_layer_inner').html('');
+					$Element('author_layer').css('border', '');
+					$Element('author_layer_inner').css('border', '1px solid #b6b6b6');
+					if (artistData.length == 0) {
+						var liElement = new $Element('<li>');
+						var spanElement = new $Element('<span>');
+						spanElement.html('작가의 다른 작품이 없습니다.');
+						liElement.append(spanElement);
+						$Element('author_layer_inner').append(liElement);
+						artistLayer.show(element);
+					} else if (artistData.length == 1) {
+						location.href = '/artistTitle?artistId=' + artistData[0].artistId;
+					} else {
+						for (var i = 0; i < artistData.length; i++) {
+							var liElement = new $Element('<li>');
+							var aElement = new $Element('<a>');
+							aElement.attr(
+								'href',
+								'/artistTitle?artistId=' + artistData[i].artistId
+							);
+							aElement.html('&lt;' + artistData[i].nickname + '&gt;의 다른작품');
+							liElement.append(aElement);
+							$Element('author_layer_inner').append(liElement);
+							if (i == 9) {
+								$Element('author_layer').css('border', '1px solid #b6b6b6');
+								$Element('author_layer_inner').css('border', '0');
+							}
+						}
+						artistLayer.show(element);
+					}
+					return false;
+				},
+			});
+
+			var bRolling = false;
+			var oAdBannerFlicking = null;
+			var adBannerInterval = null;
+
+			function loadThisWindow() {
+				actionRunner = new WebtoonArtistActionRunner('758037');
+
+				(function (oData) {
+					window.__oLikeItData = oData;
+					var s = document.createElement('script');
+					s.type = 'text/javascript';
+					s.charset = 'utf-8';
+					s.src =
+						oData.domain +
+						'/static/js/likeIt.v2.desktop.init.js?v=' +
+						new Date().toDateString().replace(/\s/g, '');
+					(document.head || document.getElementsByTagName('head')[0]).appendChild(s);
+				})({
+					serviceId: 'COMIC',
+					displayId: 'COMIC',
+					contentId: '758037',
+					domain: 'https://comic.like.naver.com',
+					lang: 'ko',
+					viewType: '',
+
+					countCallbackYn: 'Y',
+					rparam: encodeURIComponent('deviceCode=PC'),
+				});
+
+				if (levelName == 'bestChallenge') {
+					function potenupArea() {
+						if ($Element('potenupAreaBtn').className() == 'btn_potenup') {
+							$Element('potenupAreaBtn').className(
+								$Element('potenupAreaBtn').className() + ' on'
+							);
+						} else {
+							$Element('potenupAreaBtn').className('btn_potenup');
+						}
+					}
+
+					$Fn(potenupArea).attach($Element('potenupAreaBtn'), 'click');
+
+					$Fn(potenupArea).attach($Element('potenupAreaCloseBtn'), 'click');
+				}
+
+				if (jQuery('#mflick1')) {
+					var $j = jQuery.noConflict();
+
+					if ($j('#mflick1').length > 0) {
+						oAdBannerFlicking = new eg.Flicking(jQuery('#mflick1'), {
+							duration: 300,
+							circular: true,
+							defaultIndex: 0,
+						});
+						jQuery('._adBanner').show();
+						rollingAdBanner();
+
+						jQuery(window).scroll(function () {
+							var nExposureControlPosition =
+								jQuery('#mflick1').offset().top + jQuery('#mflick1').height();
+							if (window.scrollY > nExposureControlPosition) {
+								window.clearInterval(adBannerInterval);
+								bRolling = false;
+							} else {
+								if (!bRolling) {
+									rollingAdBanner();
+								}
+							}
+						});
+					}
+				}
+			}
+
+			function rollingAdBanner() {
+				if (!bRolling) {
+					adBannerInterval = setInterval(function () {
+						var statViewUrl = oAdBannerFlicking.getNextElement().data('url');
+						callWebAdBannerView(statViewUrl);
+						oAdBannerFlicking.next();
+					}, 2000);
+					bRolling = true;
+				}
+			}
+
+			function callWebAdBannerView(sStatsUrl) {
+				var self = this;
+				var nTimestamp = new Date().getTime();
+
+				jQuery.ajax({
+					type: 'GET',
+					url: sStatsUrl + '&_dummy=' + nTimestamp,
+					async: false,
+					timeout: self._nAjaxCallTimeout,
+				});
+			}
+
+			function callWebAdBannerClick(sStatsUrl, sTargetUrl) {
+				var self = this;
+				var nTimestamp = new Date().getTime();
+
+				jQuery.ajax({
+					type: 'GET',
+					url: sStatsUrl + '&_dummy=' + nTimestamp,
+					async: false,
+					timeout: self._nAjaxCallTimeout,
+					complete: function () {
+						window.open(sTargetUrl, '_blank');
+					},
+				});
+			}
+
+			$Fn(loadThisWindow).attach(window, 'load');
+
+			/**
+			 * 시리즈로 이동 가능한지 확인해서 이동
+			 *
+			 * @params nbooksId {String} 북스 상품 ID
+			 */
+			function moveBookstore(nbooksId) {
+				var result;
+
+				jQuery.ajax({
+					method: 'GET',
+					url: '/api/checkTitleInSeries?nbooksId=' + nbooksId,
+					async: false,
+					success: function (res) {
+						result = res.isExist;
+					},
+				});
+
+				var oInterval = setInterval(function () {
+					if (result) {
+						window.open(
+							'https://series.naver.com/comic/detail.series?originalProductId=' +
+								nbooksId,
+							'_blank'
+						);
+					} else {
+						alert('시리즈에 상품을 등록 중입니다. 잠시만 기다려주세요.');
+					}
+					clearInterval(oInterval);
+					oInterval = null;
+				}, 200);
+			}
+		</script>
+
+		<script
+			type="text/javascript"
+			src="/aggregate/javascript/release/comic_gnb_20211206150112.js"
+		></script>
+	</head>
+
+	<body onload="">
+		<div id="wrap" class="end_page">
+			<div id="u_skip">
+				<a
+					href="#menu"
+					onclick="document.getElementById('menu').tabIndex=-1;document.getElementById('menu').focus();return false;"
+					><span>메인 메뉴로 바로가기</span></a
+				>
+				<a
+					href="#content"
+					onclick="document.getElementById('content').tabIndex=-1;document.getElementById('content').focus();return false;"
+					><span>본문으로 바로가기</span></a
+				>
+			</div>
+
+			<div id="header_wrap">
+				<div id="header">
+					<div id="gnb">
+						<script type="text/javascript">
+							var gnb_option = {
+								gnb_service: 'comic',
+								gnb_logout: encodeURIComponent(window.location.href),
+								gnb_login: encodeURIComponent(window.location.href),
+								gnb_template: 'gnb_utf8',
+								gnb_brightness: 1,
+								gnb_item_hide_option: 0,
+							};
+						</script>
+						<script
+							type="text/javascript"
+							charset="utf-8"
+							src="https://ssl.pstatic.net/static.gn/templates/gnb_utf8?20211206150112"
+						></script>
+					</div>
+					<div id="snb_wrap">
+						<h1>
+							<a
+								onclick="nclk_v2(event,'STA.naverlogo')"
+								href="https://www.naver.com"
+								title="NAVER"
+								class="Ntxt_naver"
+								>NAVER</a
+							>
+							<a
+								onclick="nclk_v2(event,'STA.comic')"
+								href="/naverwebtoon"
+								title="만화"
+								class="Ntxt_comic"
+								>만화</a
+							>
+							<em class="bar">|</em>
+							<a
+								onclick="nclk_v2(event,'STA.novel')"
+								href="https://novel.naver.com"
+								title="웹소설"
+								class="Ntxt_novel"
+								>웹소설</a
+							>
+						</h1>
+
+						<form id="searchForm" name="search" method="get" action="/search">
+							<fieldset>
+								<legend>검색</legend>
+								<div class="snb_search_box">
+									<div class="snb_search_box_sub">
+										<!-- [D] 클릭시 label.ph 텍스트 삭제해주세요. -->
+										<label class="ph" for="gnb.keyword"
+											>제목/작가로 검색할 수 있습니다.</label
+										>
+										<input
+											type="text"
+											id="gnb.keyword"
+											name="keyword"
+											value=""
+											title="검색어 입력"
+											maxlength="18"
+											class="snb_search_text"
+										/>
+										<button
+											type="button"
+											class="btn_search"
+											id="search_bar_button"
+											onclick="nclk_v2(event,'STA.search')"
+											title="검색"
+											alt="검색"
+										>
+											<span class="Nico_search">검색</span>
+										</button>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+
+					<div id="author_layer" style="text-align: left; display: none;">
+						<ul id="author_layer_inner">
+							&nbsp;
+						</ul>
+					</div>
+
+					<div class="notice_info">
+						<span class="blind">공지사항</span>
+						<div class="rolling">
+							<div class="notice_rolling">
+								<li>
+									<a
+										onclick="nclk_v2(event,'STA.txt')"
+										href="https://comic.naver.com/webtoon/list.nhn?titleId=785250"
+										title="모솔 서브남 연애시키기 &lt;원작은 완결난 지 한참 됐습니다만&gt;"
+									>
+										<span class="Nico_notice"></span>
+										모솔 서브남 연애시키기 &lt;원작은 완결난 지 한참
+										됐습니다만&gt;
+									</a>
+								</li>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="menu">
+					<ul class="menu">
+						<!-- [D] 선택된 li에 current 클래스 추가 -->
+						<li>
+							<a onclick="nclk_v2(event,'LNB.home');" href="/naverwebtoon"
+								><span class="Ntxt_home">웹툰 홈</span></a
+							>
+						</li>
+						<li class="current">
+							<a onclick="nclk_v2(event,'LNB.toon');" href="/webtoon/weekday"
+								><span class="Ntxt_webtoon">웹툰</span></a
+							>
+						</li>
+
+						<li>
+							<a onclick="nclk_v2(event,'LNB.my');" href="/mypage/favorite"
+								><span class="Ntxt_mypage">마이페이지</span></a
+							><span class="bar"></span>
+						</li>
+					</ul>
+					<h2 class="blind">웹툰</h2>
+				</div>
+				<!-- //상단 메뉴 /webtoon/list-->
+
+				<div id="submenu">
+					<!--서브메뉴-->
+					<ul class="submenu">
+						<!-- [D] 선택된 li에 on 클래스 추가 -->
+						<li class="on">
+							<a onclick="nclk_v2(event,'tab.weekday')" href="/webtoon/weekday"
+								><span class="Ntxt_menu_date">요일별</span></a
+							>
+						</li>
+						<li>
+							<a onclick="nclk_v2(event,'tab.genre')" href="/webtoon/genre"
+								><span class="Ntxt_menu_genre">장르별</span></a
+							>
+						</li>
+						<li>
+							<a onclick="nclk_v2(event,'tab.creation')" href="/webtoon/creation"
+								><span class="Ntxt_menu_art">작품별</span></a
+							>
+						</li>
+						<li>
+							<a onclick="nclk_v2(event,'tab.artist')" href="/webtoon/artist"
+								><span class="Ntxt_menu_author">작가별</span></a
+							>
+						</li>
+						<li>
+							<a onclick="nclk_v2(event,'tab.period')" href="/webtoon/period"
+								><span class="Ntxt_menu_year">연도별</span></a
+							>
+						</li>
+						<li>
+							<a onclick="nclk_v2(event,'tab.theme')" href="/webtoon/theme"
+								><span class="Ntxt_menu_theme">테마웹툰</span></a
+							>
+						</li>
+						<li>
+							<a onclick="nclk_v2(event,'tab.finish')" href="/webtoon/finish"
+								><span class="Ntxt_menu_end">완결웹툰</span></a
+							>
+						</li>
+					</ul>
+					<!--//서브메뉴-->
+				</div>
+			</div>
+			<!-- 상단 영역(메인에만 나감.) -->
+
+			<!-- //상단 영역 -->
+
+			<div id="container" class="">
+				<div id="content" class="webtoon">
+					<ul class="category_tab">
+						<li class="">
+							<a onclick="nclk_v2(event,'dna.all')" href="/webtoon/weekday"
+								>요일전체</a
+							>
+						</li>
+						<li class="on">
+							<a
+								onclick="nclk_v2(event,'dna.monday')"
+								href="/webtoon/weekdayList?week=mon"
+								>월요웹툰</a
+							>
+						</li>
+						<li class="">
+							<a
+								onclick="nclk_v2(event,'dna.tuesday')"
+								href="/webtoon/weekdayList?week=tue"
+								>화요웹툰</a
+							>
+						</li>
+						<li class="">
+							<a
+								onclick="nclk_v2(event,'dna.wednesday')"
+								href="/webtoon/weekdayList?week=wed"
+								>수요웹툰</a
+							>
+						</li>
+						<li class="">
+							<a
+								onclick="nclk_v2(event,'dna.thursday')"
+								href="/webtoon/weekdayList?week=thu"
+								>목요웹툰</a
+							>
+						</li>
+						<li class="">
+							<a
+								onclick="nclk_v2(event,'dna.friday')"
+								href="/webtoon/weekdayList?week=fri"
+								>금요웹툰</a
+							>
+						</li>
+						<li class="">
+							<a
+								onclick="nclk_v2(event,'dna.saturday')"
+								href="/webtoon/weekdayList?week=sat"
+								>토요웹툰</a
+							>
+						</li>
+						<li class="">
+							<a
+								onclick="nclk_v2(event,'dna.sunday')"
+								href="/webtoon/weekdayList?week=sun"
+								>일요웹툰</a
+							>
+						</li>
+					</ul>
+
+					<!-- body -->
+					<!-- 상세 정보영역 -->
+					<div class="comicinfo" style="">
+						<div class="thumb">
+							<a
+								onclick="nclk_v2(event,'inf.img')"
+								href="/webtoon/list?titleId=758037"
+							>
+								<img
+									src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG06_794bcc1e-23aa-4c35-a335-b5d21b4bc2ab.jpg"
+									title="참교육"
+									alt="참교육"
+									width="125"
+									height="101"
+									onERROR="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/non125_101.gif'"
+								/>
+								<span class="mask"></span>
+							</a>
+						</div>
+						<div class="detail">
+							
+							<h2>
+								<%= @webtoon.webtoonname %><span class="wrt_nm">
+									<%= @webtoon.author %></span
+								>
+							</h2>
+							<p><%= @webtoon.summary %></p>
+
+							<p class="detail_info">
+								<span class="genre"> <%= @webtoon.genre %></span
+								><span class="age"> <%= @webtoon.agelimit %>세 이용가</span>
+							</p>
+							
+							<ul class="btn_group">
+								<li>
+									<a
+										href="#"
+										onclick="return actionRunner.addFavoriteWebtoon('758037', event);"
+										title="관심웹툰"
+										class="book_maker"
+										><span>관심웹툰</span></a
+									>
+								</li>
+								<li>
+									<a
+										href="#"
+										onclick="nclk_v2(event,'inf.first');return checkServiceCode('S00','1')"
+										title="첫회보기"
+										class="first"
+										><span>첫회보기</span></a
+									>
+								</li>
+								<li>
+									<a
+										href="#"
+										onclick="nclk_v2(event,'inf.artist');return actionRunner.artistForArtistTitle(this)"
+										id="other_content"
+										title="작가의 다른 작품"
+										class="other2"
+										><span>작가의 다른 작품</span></a
+									>
+								</li>
+								<!-- [D] pre_view 클래스에 완결인 경우 end 클래스 추가 및 span에 설명 변경-->
+								<li></li>
+								<li>
+									<div class="u_likeit_module"></div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- //상세 정보영역 -->
+					<!-- 리스트 -->
+					<table cellpadding="0" cellspacing="0" class="viewList">
+						<caption>
+							<span class="blind">회차별 목록</span>
+						</caption>
+						<col width="99" />
+						<col width="*" />
+						<col width="141" />
+						<col width="76" />
+						<thead>
+							<tr>
+								<th scope="col">이미지</th>
+								<th scope="col">쿠키개수</th>
+								<th scope="col">별점</th>
+								<th scope="col">등록일</th>
+							</tr>
+						</thead>
+						<tr class="band_banner v2">
+							<td colspan="4">
+								<a
+									href="https://series.naver.com/comic/detail.series?originalProductId=414850"
+									onclick="nclk_v2(event,'lst.gostore','758037');"
+									target="_blank"
+								>
+									<em class="ico_store2">NAVER 만화</em>다음 화를 미리
+									만나보세요.</a
+								>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<a
+									href="/list/buy"
+									onclick="nclk_v2(event,'lst.img','758037','57')"
+								>
+									<img
+										src="https://shared-comic.pstatic.net/thumb/webtoon/758037/57/thumbnail_202x120_1c148d7a-ed62-462b-95b9-ffa67a2ae03d.jpg"
+										title="57화"
+										alt="57화"
+										width="71"
+										height="41"
+										onERROR="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/non71_41.gif'"
+									/>
+									<span class="mask"></span>
+								</a>
+							</td>
+							
+							
+			<% @episodes.each do |episode| %>
+							<td class="title">
+								<a
+									href="/list/buy"
+									onclick="nclk_v2(event,'lst.title','758037','57')"
+									><%= episode.round %>화</a
+								>
+							
+								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								<a href="list/buy" >쿠키<%= episode.cookiecount %>개 사용</a>
+								
+							</td>
+						
+							<td>
+								
+								<div class="rating_type">
+									<span class="star"><em style="width: 20%;">평점</em></span>
+									<strong><%= episode.scope %></strong>
+								</div>
+							</td>
+							<td class="num"><%= episode.registration %></td>
+							<% end %>
+						</tr>
+						<tr>
+							<td>
+								<a
+									href="/webtoon/detail?titleId=758037&no=56&weekday=mon"
+									onclick="nclk_v2(event,'lst.img','758037','56')"
+								>
+									<img
+										src="https://shared-comic.pstatic.net/thumb/webtoon/758037/56/thumbnail_202x120_465c6b6b-077b-450b-bd82-c5339f60d1a0.jpg"
+										title="56화"
+										alt="56화"
+										width="71"
+										height="41"
+										onERROR="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/non71_41.gif'"
+									/>
+									<span class="mask"></span>
+								</a>
+							</td>
+							<td class="title">
+								<a
+									href="/webtoon/detail?titleId=758037&no=56&weekday=mon"
+									onclick="nclk_v2(event,'lst.title','758037','56')"
+									>56화</a
+								>
+							</td>
+							<td>
+								<div class="rating_type">
+									<span class="star"><em style="width: 99.58%;">평점</em></span>
+									<strong>9.96</strong>
+								</div>
+							</td>
+							<td class="num">2021.11.28</td>
+						</tr>
+						<tr>
+							<td>
+								<a
+									href="/webtoon/detail?titleId=758037&no=55&weekday=mon"
+									onclick="nclk_v2(event,'lst.img','758037','55')"
+								>
+									<img
+										src="https://shared-comic.pstatic.net/thumb/webtoon/758037/55/thumbnail_202x120_823ef0d8-8481-4904-b707-ca490098dbd6.jpg"
+										title="55화"
+										alt="55화"
+										width="71"
+										height="41"
+										onERROR="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/non71_41.gif'"
+									/>
+									<span class="mask"></span>
+								</a>
+							</td>
+							<td class="title">
+								<a
+									href="/webtoon/detail?titleId=758037&no=55&weekday=mon"
+									onclick="nclk_v2(event,'lst.title','758037','55')"
+									>55화</a
+								>
+							</td>
+							<td>
+								<div class="rating_type">
+									<span class="star"><em style="width: 99.56%;">평점</em></span>
+									<strong>9.96</strong>
+								</div>
+							</td>
+							<td class="num">2021.11.21</td>
+						</tr>
+						<tr>
+							<td>
+								<a
+									href="/webtoon/detail?titleId=758037&no=54&weekday=mon"
+									onclick="nclk_v2(event,'lst.img','758037','54')"
+								>
+									<img
+										src="https://shared-comic.pstatic.net/thumb/webtoon/758037/54/thumbnail_202x120_dbec916f-8064-4f95-9af9-4b234318e46f.jpg"
+										title="54화"
+										alt="54화"
+										width="71"
+										height="41"
+										onERROR="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/non71_41.gif'"
+									/>
+									<span class="mask"></span>
+								</a>
+							</td>
+							<td class="title">
+								<a
+									href="/webtoon/detail?titleId=758037&no=54&weekday=mon"
+									onclick="nclk_v2(event,'lst.title','758037','54')"
+									>54화</a
+								>
+							</td>
+							<td>
+								<div class="rating_type">
+									<span class="star"><em style="width: 99.36%;">평점</em></span>
+									<strong>9.94</strong>
+								</div>
+							</td>
+							<td class="num">2021.11.14</td>
+						</tr>
+						<tr>
+							<td>
+								<a
+									href="/webtoon/detail?titleId=758037&no=53&weekday=mon"
+									onclick="nclk_v2(event,'lst.img','758037','53')"
+								>
+									<img
+										src="https://shared-comic.pstatic.net/thumb/webtoon/758037/53/thumbnail_202x120_64dd1a9e-73ba-4136-8ee0-a0cb326829d1.jpg"
+										title="53화"
+										alt="53화"
+										width="71"
+										height="41"
+										onERROR="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/non71_41.gif'"
+									/>
+									<span class="mask"></span>
+								</a>
+							</td>
+							<td class="title">
+								<a
+									href="/webtoon/detail?titleId=758037&no=53&weekday=mon"
+									onclick="nclk_v2(event,'lst.title','758037','53')"
+									>53화</a
+								>
+							</td>
+							<td>
+								<div class="rating_type">
+									<span class="star"><em style="width: 94.18%;">평점</em></span>
+									<strong>9.42</strong>
+								</div>
+							</td>
+							<td class="num">2021.11.07</td>
+						</tr>
+						<tr>
+							<td>
+								<a
+									href="/webtoon/detail?titleId=758037&no=52&weekday=mon"
+									onclick="nclk_v2(event,'lst.img','758037','52')"
+								>
+									<img
+										src="https://shared-comic.pstatic.net/thumb/webtoon/758037/52/thumbnail_202x120_e431c87d-35ab-4a24-b4c2-d6ac1ca71a3c.jpg"
+										title="52화"
+										alt="52화"
+										width="71"
+										height="41"
+										onERROR="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/non71_41.gif'"
+									/>
+									<span class="mask"></span>
+								</a>
+							</td>
+							<td class="title">
+								<a
+									href="/webtoon/detail?titleId=758037&no=52&weekday=mon"
+									onclick="nclk_v2(event,'lst.title','758037','52')"
+									>52화</a
+								>
+							</td>
+							<td>
+								<div class="rating_type">
+									<span class="star"><em style="width: 99.09%;">평점</em></span>
+									<strong>9.91</strong>
+								</div>
+							</td>
+							<td class="num">2021.10.24</td>
+						</tr>
+						<tr>
+							<td>
+								<a
+									href="/webtoon/detail?titleId=758037&no=51&weekday=mon"
+									onclick="nclk_v2(event,'lst.img','758037','51')"
+								>
+									<img
+										src="https://shared-comic.pstatic.net/thumb/webtoon/758037/51/thumbnail_202x120_6c2779c9-f50e-450d-96af-1cb0d177f293.jpg"
+										title="51화"
+										alt="51화"
+										width="71"
+										height="41"
+										onERROR="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/non71_41.gif'"
+									/>
+									<span class="mask"></span>
+								</a>
+							</td>
+							<td class="title">
+								<a
+									href="/webtoon/detail?titleId=758037&no=51&weekday=mon"
+									onclick="nclk_v2(event,'lst.title','758037','51')"
+									>51화</a
+								>
+							</td>
+							<td>
+								<div class="rating_type">
+									<span class="star"><em style="width: 99.14%;">평점</em></span>
+									<strong>9.91</strong>
+								</div>
+							</td>
+							<td class="num">2021.10.17</td>
+						</tr>
+						<tr>
+							<td>
+								<a
+									href="/webtoon/detail?titleId=758037&no=50&weekday=mon"
+									onclick="nclk_v2(event,'lst.img','758037','50')"
+								>
+									<img
+										src="https://shared-comic.pstatic.net/thumb/webtoon/758037/50/thumbnail_202x120_54406bf2-6384-41f4-941d-be2001fb8170.jpg"
+										title="50화"
+										alt="50화"
+										width="71"
+										height="41"
+										onERROR="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/non71_41.gif'"
+									/>
+									<span class="mask"></span>
+								</a>
+							</td>
+							<td class="title">
+								<a
+									href="/webtoon/detail?titleId=758037&no=50&weekday=mon"
+									onclick="nclk_v2(event,'lst.title','758037','50')"
+									>50화</a
+								>
+							</td>
+							<td>
+								<div class="rating_type">
+									<span class="star"><em style="width: 99.43%;">평점</em></span>
+									<strong>9.94</strong>
+								</div>
+							</td>
+							<td class="num">2021.10.10</td>
+						</tr>
+						<tr>
+							<td>
+								<a
+									href="/webtoon/detail?titleId=758037&no=49&weekday=mon"
+									onclick="nclk_v2(event,'lst.img','758037','49')"
+								>
+									<img
+										src="https://shared-comic.pstatic.net/thumb/webtoon/758037/49/thumbnail_202x120_31fc9d78-b90c-4e39-8e9b-74424b3ba734.jpg"
+										title="49화"
+										alt="49화"
+										width="71"
+										height="41"
+										onERROR="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/non71_41.gif'"
+									/>
+									<span class="mask"></span>
+								</a>
+							</td>
+							<td class="title">
+								<a
+									href="/webtoon/detail?titleId=758037&no=49&weekday=mon"
+									onclick="nclk_v2(event,'lst.title','758037','49')"
+									>49화</a
+								>
+							</td>
+							<td>
+								<div class="rating_type">
+									<span class="star"><em style="width: 99.37%;">평점</em></span>
+									<strong>9.94</strong>
+								</div>
+							</td>
+							<td class="num">2021.10.03</td>
+						</tr>
+						<tr>
+							<td>
+								<a
+									href="/webtoon/detail?titleId=758037&no=48&weekday=mon"
+									onclick="nclk_v2(event,'lst.img','758037','48')"
+								>
+									<img
+										src="https://shared-comic.pstatic.net/thumb/webtoon/758037/48/thumbnail_202x120_413ca811-2aa3-451b-aac6-b770193cc442.jpg"
+										title="48화"
+										alt="48화"
+										width="71"
+										height="41"
+										onERROR="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/non71_41.gif'"
+									/>
+									<span class="mask"></span>
+								</a>
+							</td>
+							<td class="title">
+								<a
+									href="/webtoon/detail?titleId=758037&no=48&weekday=mon"
+									onclick="nclk_v2(event,'lst.title','758037','48')"
+									>48화</a
+								>
+							</td>
+							<td>
+								<div class="rating_type">
+									<span class="star"><em style="width: 99.53%;">평점</em></span>
+									<strong>9.95</strong>
+								</div>
+							</td>
+							<td class="num">2021.09.26</td>
+						</tr>
+					</table>
+					<!-- //리스트 -->
+
+					<div class="paginate">
+						<div class="page_wrap">
+							<strong class="blind">페이지 이동하기</strong>
+							<strong class="page"
+								><em class="num_page">1</em
+								><span class="blind"> 현재 페이지</span></strong
+							>
+							<a
+								href="/webtoon/list?titleId=758037&amp;weekday=mon&amp;page=2"
+								class="page"
+								><em class="num_page">2</em></a
+							>
+							<a
+								href="/webtoon/list?titleId=758037&amp;weekday=mon&amp;page=3"
+								class="page"
+								><em class="num_page">3</em></a
+							>
+							<a
+								href="/webtoon/list?titleId=758037&amp;weekday=mon&amp;page=4"
+								class="page"
+								><em class="num_page">4</em></a
+							>
+							<a
+								href="/webtoon/list?titleId=758037&amp;weekday=mon&amp;page=5"
+								class="page"
+								><em class="num_page">5</em></a
+							>
+							<a
+								href="/webtoon/list?titleId=758037&amp;weekday=mon&amp;page=6"
+								class="page"
+								><em class="num_page">6</em></a
+							>
+							<a
+								href="/webtoon/list?titleId=758037&amp;weekday=mon&amp;page=2"
+								class="next"
+								title="다음 페이지 목록으로 이동"
+								><span class="cnt_page">다음</span
+								><span class="blind"> 페이지 목록으로 이동</span
+								><span class="ico_page"></span
+							></a>
+						</div>
+					</div>
+					<script type="text/javascript">
+						function checkServiceCode(serviceCode, no) {
+							var hrefUrl =
+								'/webtoon/detail?titleId=758037&no=' + no + '&weekday=mon';
+
+							if ('S00' == serviceCode) {
+								location.href = hrefUrl;
+							} else {
+								this.alert('게시 보류 중인 콘텐츠 입니다.');
+							}
+							return false;
+						}
+					</script>
+				</div>
+				<!-- side menu -->
+
+				<div id="aside">
+					<div class="asideButton upload">
+						<a
+							href="/mypage/myActivity"
+							class="Nbtn_upload"
+							onclick="nclk_v2(event,'olk.upload');"
+							>웹툰 올리기</a
+						>
+					</div>
+
+					<!-- 배너 -->
+
+					<div id="addiv" name="addiv" data-veta-preview="p_wtoon_end" class="asideAd">
+						<iframe
+							id="f240240"
+							name="f240240"
+							src="https://veta.naver.com/fxshow?su=SU10321"
+							width="240"
+							height="240"
+							border="0"
+							frameborder="0"
+							scrolling="no"
+							marginheight="0"
+							marginwidth="0"
+							align="center"
+							title="광고영역"
+						></iframe>
+					</div>
+
+					<!-- //배너 -->
+
+					<!-- 롤링이미지 -->
+
+					<div class="asideRolling">
+						<a
+							onclick="nclk_v2(event,'olk.banner')"
+							href="https://comic-superstring.naver.com/"
+							target="_blank"
+						>
+							<img
+								src="https://naverwebtoon-phinf.pstatic.net/20190711_69/15628125217864fItE_JPEG/upload_7786257395998636846.JPEG?type=p100"
+								width="240"
+								height="97"
+								alt="드디어! 슈퍼스트링 전용관"
+							/>
+						</a>
+					</div>
+
+					<!-- 인기급상승웹툰 -->
+					<div class="asideBox">
+						<h4 class="asideBoxTitle">
+							<img
+								src="https://ssl.pstatic.net/static/comic/images/migration/common/subtlt_r_best_v2.gif"
+								title="인기급상승웹툰"
+								alt="인기급상승웹툰"
+								width="78"
+								height="11"
+							/>
+						</h4>
+						<div>
+							<ul class="asideBoxTab">
+								<!-- 선택된 메뉴에는 choice라는 클래스명을 사용합니다 -->
+								<li id="realTimeRankChoiceTabFavorite" class="choice">
+									<a
+										id="realTimeRankChoiceTabFavoriteClick"
+										onclick="nclk_v2(event,'rnk.rep')"
+										href="#"
+										><img
+											src="https://ssl.pstatic.net/static/comic/images/migration/common/tab_txt_favor.gif"
+											title="인기순"
+											alt="인기순"
+											width="31"
+											height="12"
+									/></a>
+								</li>
+								<li id="realTimeRankChoiceTabUpdate">
+									<a
+										id="realTimeRankChoiceTabUpdateClick"
+										onclick="nclk_v2(event,'rnk.upd')"
+										href="#"
+										><img
+											src="https://ssl.pstatic.net/static/comic/images/migration/common/tab_txt_update.gif"
+											title="업데이트순"
+											alt="업데이트순"
+											width="52"
+											height="12"
+									/></a>
+								</li>
+							</ul>
+							<h3 id="realTimeRankBlindName" class="blind">인기순</h3>
+							<ol id="realTimeRankFavorite" class="asideBoxRank">
+								<li class="rank01">
+									<a
+										onclick="nclk_v2(event,'rnk*p.cont','758037','1')"
+										href="/webtoon/detail?titleId=758037&no=57"
+										title="참교육-57화"
+										>참교육-57화</a
+									>
+
+									<span class="rankBox">
+										<img
+											src="https://ssl.pstatic.net/static/comic/images/migration/common/arrow_no.gif"
+											title="변동없음"
+											alt="변동없음"
+											width="7"
+											height="10"
+										/>
+										0
+									</span>
+								</li>
+
+								<li class="rank02">
+									<a
+										onclick="nclk_v2(event,'rnk*p.cont','783052','2')"
+										href="/webtoon/detail?titleId=783052&no=7"
+										title="퀘스트지상주의-7화 ㅆ발럼"
+										>퀘스트지상주의-7화 ㅆ발럼</a
+									>
+
+									<span class="rankBox">
+										<img
+											src="https://ssl.pstatic.net/static/comic/images/migration/common/arrow_no.gif"
+											title="변동없음"
+											alt="변동없음"
+											width="7"
+											height="10"
+										/>
+										0
+									</span>
+								</li>
+
+								<li class="rank03">
+									<a
+										onclick="nclk_v2(event,'rnk*p.cont','733074','3')"
+										href="/webtoon/detail?titleId=733074&no=104"
+										title="백수세끼-104화 소라찜"
+										>백수세끼-104화 소라찜</a
+									>
+
+									<span class="rankBox">
+										<img
+											src="https://ssl.pstatic.net/static/comic/images/migration/common/arrow_no.gif"
+											title="변동없음"
+											alt="변동없음"
+											width="7"
+											height="10"
+										/>
+										0
+									</span>
+								</li>
+
+								<li class="rank04">
+									<a
+										onclick="nclk_v2(event,'rnk*p.cont','654774','4')"
+										href="/webtoon/detail?titleId=654774&no=296"
+										title="소녀의 세계-2부 79화"
+										>소녀의 세계-2부 79화</a
+									>
+
+									<span class="rankBox">
+										<img
+											src="https://ssl.pstatic.net/static/comic/images/migration/common/arrow_no.gif"
+											title="변동없음"
+											alt="변동없음"
+											width="7"
+											height="10"
+										/>
+										0
+									</span>
+								</li>
+
+								<li class="rank05">
+									<a
+										onclick="nclk_v2(event,'rnk*p.cont','183559','5')"
+										href="/webtoon/detail?titleId=183559&no=517"
+										title="신의 탑-3부 98화"
+										>신의 탑-3부 98화</a
+									>
+
+									<span class="rankBox">
+										<img
+											src="https://ssl.pstatic.net/static/comic/images/migration/common/arrow_no.gif"
+											title="변동없음"
+											alt="변동없음"
+											width="7"
+											height="10"
+										/>
+										0
+									</span>
+								</li>
+
+								<li class="rank06">
+									<a
+										onclick="nclk_v2(event,'rnk*p.cont','774863','6')"
+										href="/webtoon/detail?titleId=774863&no=21"
+										title="팔이피플-21화 - 지옥에 가도 좋아"
+										>팔이피플-21화 - 지옥에 가도 좋아</a
+									>
+
+									<span class="rankBox">
+										<img
+											src="https://ssl.pstatic.net/static/comic/images/migration/common/arrow_no.gif"
+											title="변동없음"
+											alt="변동없음"
+											width="7"
+											height="10"
+										/>
+										0
+									</span>
+								</li>
+
+								<li class="rank07">
+									<a
+										onclick="nclk_v2(event,'rnk*p.cont','783054','7')"
+										href="/webtoon/detail?titleId=783054&no=16"
+										title="쇼미더럭키짱!-16화 안경 안 벗어?"
+										>쇼미더럭키짱!-16화 안경 안 벗어?</a
+									>
+
+									<span class="rankBox">
+										<img
+											src="https://ssl.pstatic.net/static/comic/images/migration/common/arrow_up.gif"
+											title="순위상승"
+											alt="순위상승"
+											width="7"
+											height="10"
+										/>1
+									</span>
+								</li>
+
+								<li class="rank08">
+									<a
+										onclick="nclk_v2(event,'rnk*p.cont','703849','8')"
+										href="/webtoon/detail?titleId=703849&no=164"
+										title="요리GO-시즌3. 57화 서운함"
+										>요리GO-시즌3. 57화 서운함</a
+									>
+
+									<span class="rankBox">
+										<img
+											src="https://ssl.pstatic.net/static/comic/images/migration/common/arrow_down.gif"
+											title="순위하락"
+											alt="순위하락"
+											width="7"
+											height="10"
+										/>1
+									</span>
+								</li>
+
+								<li class="rank09">
+									<a
+										onclick="nclk_v2(event,'rnk*p.cont','749632','9')"
+										href="/webtoon/detail?titleId=749632&no=75"
+										title="파이게임-75화"
+										>파이게임-75화</a
+									>
+
+									<span class="rankBox">
+										<img
+											src="https://ssl.pstatic.net/static/comic/images/migration/common/arrow_no.gif"
+											title="변동없음"
+											alt="변동없음"
+											width="7"
+											height="10"
+										/>
+										0
+									</span>
+								</li>
+
+								<li class="rank10">
+									<a
+										onclick="nclk_v2(event,'rnk*p.cont','728750','10')"
+										href="/webtoon/detail?titleId=728750&no=134"
+										title="장씨세가 호위무사-134화"
+										>장씨세가 호위무사-134화</a
+									>
+
+									<span class="rankBox">
+										<img
+											src="https://ssl.pstatic.net/static/comic/images/migration/common/arrow_no.gif"
+											title="변동없음"
+											alt="변동없음"
+											width="7"
+											height="10"
+										/>
+										0
+									</span>
+								</li>
+							</ol>
+							<ol id="realTimeRankUpdate" class="asideBoxRank" style="display: none;">
+								<li class="rank01">
+									<a
+										onclick="nclk_v2(event,'rnk*u.cont','21815','1')"
+										href="/webtoon/detail?titleId=21815&no=800"
+										title="히어로메이커-제국 정보"
+									>
+										히어로메이커-제국 정보
+									</a>
+									<span class="timeBox">
+										19시간전
+									</span>
+								</li>
+
+								<li class="rank02">
+									<a
+										onclick="nclk_v2(event,'rnk*u.cont','716857','2')"
+										href="/webtoon/detail?titleId=716857&no=420"
+										title="오늘의 순정망화-시즌2 236화"
+									>
+										오늘의 순정망화-시즌2 236화
+									</a>
+									<span class="timeBox">
+										19시간전
+									</span>
+								</li>
+
+								<li class="rank03">
+									<a
+										onclick="nclk_v2(event,'rnk*u.cont','687915','3')"
+										href="/webtoon/detail?titleId=687915&no=262"
+										title="꿈의 기업-5부 33화"
+									>
+										꿈의 기업-5부 33화
+									</a>
+									<span class="timeBox">
+										19시간전
+									</span>
+								</li>
+
+								<li class="rank04">
+									<a
+										onclick="nclk_v2(event,'rnk*u.cont','752414','4')"
+										href="/webtoon/detail?titleId=752414&no=54"
+										title="리턴 투 플레이어-54화. 던전 점령전 (2)"
+									>
+										리턴 투 플레이어-54화. 던전 점령전 (2)
+									</a>
+									<span class="timeBox">
+										19시간전
+									</span>
+								</li>
+
+								<li class="rank05">
+									<a
+										onclick="nclk_v2(event,'rnk*u.cont','764480','5')"
+										href="/webtoon/detail?titleId=764480&no=47"
+										title="트리거-47화: Charmless man (4)"
+									>
+										트리거-47화: Charmless man (4)
+									</a>
+									<span class="timeBox">
+										19시간전
+									</span>
+								</li>
+
+								<li class="rank06">
+									<a
+										onclick="nclk_v2(event,'rnk*u.cont','783466','6')"
+										href="/webtoon/detail?titleId=783466&no=8"
+										title="혁신적 얼간이들-8화 혁신의 평화"
+									>
+										혁신적 얼간이들-8화 혁신의 평화
+									</a>
+									<span class="timeBox">
+										19시간전
+									</span>
+								</li>
+
+								<li class="rank07">
+									<a
+										onclick="nclk_v2(event,'rnk*u.cont','733074','7')"
+										href="/webtoon/detail?titleId=733074&no=104"
+										title="백수세끼-104화 소라찜"
+									>
+										백수세끼-104화 소라찜
+									</a>
+									<span class="timeBox">
+										19시간전
+									</span>
+								</li>
+
+								<li class="rank08">
+									<a
+										onclick="nclk_v2(event,'rnk*u.cont','734918','8')"
+										href="/webtoon/detail?titleId=734918&no=97"
+										title="모락모락 왕세자님-2부 30화"
+									>
+										모락모락 왕세자님-2부 30화
+									</a>
+									<span class="timeBox">
+										19시간전
+									</span>
+								</li>
+
+								<li class="rank09">
+									<a
+										onclick="nclk_v2(event,'rnk*u.cont','744320','9')"
+										href="/webtoon/detail?titleId=744320&no=75"
+										title="와이키키 뱀파이어-74화. 제비꽃 인생(마무리)"
+									>
+										와이키키 뱀파이어-74화. 제비꽃 인생(마무리)
+									</a>
+									<span class="timeBox">
+										19시간전
+									</span>
+								</li>
+
+								<li class="rank10">
+									<a
+										onclick="nclk_v2(event,'rnk*u.cont','756140','10')"
+										href="/webtoon/detail?titleId=756140&no=51"
+										title="라서드-50화 전야제"
+									>
+										라서드-50화 전야제
+									</a>
+									<span class="timeBox">
+										19시간전
+									</span>
+								</li>
+							</ol>
+						</div>
+					</div>
+					<!-- //인기급상승웹툰 -->
+
+					<!-- 추천 웹툰 -->
+					<div class="asideBox">
+						<!-- [D] 10대: h_10_v2.gif, 20대: h_20_v2.gif -->
+						<h4 class="asideBoxTitle">
+							<img
+								id="recommand_ageImg"
+								src="https://ssl.pstatic.net/static/comic/images/migration/common/h_30_v2.gif"
+								width="107"
+								height="11"
+								alt="30대 인기웹툰"
+							/>
+							<div class="tab_nv">
+								<a id="recommandWebtoonRankLeftTabClick" href="#" class="Nico_prv"
+									>이전</a
+								><a id="recommandWebtoonRankRightTabClick" href="#" class="Nico_nxt"
+									>다음</a
+								>
+							</div>
+						</h4>
+						<div>
+							<ul class="asideBoxTab">
+								<li id="recommandWebtoonRankMTabOver" class="choice">
+									<a href="#" onclick="return false;">
+										<img
+											src="https://ssl.pstatic.net/static/comic/images/migration/common/tab_txt_m.png"
+											width="21"
+											height="11"
+											alt="남자"
+											title="남자"
+									/></a>
+								</li>
+								<li id="recommandWebtoonRankWTabOver">
+									<a href="#" onclick="return false;">
+										<img
+											src="https://ssl.pstatic.net/static/comic/images/migration/common/tab_txt_w.png"
+											width="21"
+											height="11"
+											alt="여자"
+											title="여자"
+									/></a>
+								</li>
+							</ul>
+							<h3 id="ageGenderRankBlindName" class="blind">남자</h3>
+							<ol id="recommandWebtoonRank" class="asideBoxRank asideBoxRank2">
+								<li id="recommandLi_0" class="rank01">
+									<div class="thumb6">
+										<a id="recommand_link_0" href="/list" title="참교육">
+											<img
+												onerror="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/blank.gif'"
+												id="recommand_thumbnail_0"
+												src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg"
+												width="30"
+												height="33"
+												alt="참교육"
+											/>
+											<span class="mask"></span>
+										</a>
+									</div>
+									<div class="rc_info">
+										<a
+											id="recommand_titleName_0"
+											href="/webtoon/detail?titleId=758037&no=57"
+											class="tit"
+											title="참교육"
+											>참교육</a
+										>
+										<em
+											><a
+												id="recommand_painter_0"
+												href="#"
+												onclick="return artistAction.viewArtist('758037', this);"
+												title="채용택 / 한가람"
+												>채용택 / 한가람</a
+											></em
+										>
+										<span class="rankBox2">
+											<img
+												id="recommand_img_0"
+												src="https://ssl.pstatic.net/static/comic/images/migration/common/arrow_no.gif"
+												title="변동없음"
+												alt="변동없음"
+											/><em id="recommand_rank_0">0</em>
+										</span>
+									</div>
+								</li>
+
+								<li id="recommandLi_1" class="rank02">
+									<div class="thumb6">
+										<a
+											id="recommand_link_1"
+											href="/webtoon/detail?titleId=783052&no=7"
+											title="퀘스트지상주의"
+										>
+											<img
+												onerror="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/blank.gif'"
+												id="recommand_thumbnail_1"
+												src="https://shared-comic.pstatic.net/thumb/webtoon/783052/thumbnail/thumbnail_IMAG10_6f81978e-f050-4fe1-82c0-4306fe4b7db0.jpg"
+												width="30"
+												height="33"
+												alt="퀘스트지상주의"
+											/>
+											<span class="mask"></span>
+										</a>
+									</div>
+									<div class="rc_info">
+										<a
+											id="recommand_titleName_1"
+											href="/webtoon/detail?titleId=783052&no=7"
+											class="tit"
+											title="퀘스트지상주의"
+											>퀘스트지상주의</a
+										>
+										<em
+											><a
+												id="recommand_painter_1"
+												href="#"
+												onclick="return artistAction.viewArtist('783052', this);"
+												title="박태준 만화회사"
+												>박태준 만화회사</a
+											></em
+										>
+										<span class="rankBox2">
+											<img
+												id="recommand_img_1"
+												src="https://ssl.pstatic.net/static/comic/images/migration/common/arrow_no.gif"
+												title="변동없음"
+												alt="변동없음"
+											/><em id="recommand_rank_1">0</em>
+										</span>
+									</div>
+								</li>
+
+								<li id="recommandLi_2" class="rank03">
+									<div class="thumb6">
+										<a
+											id="recommand_link_2"
+											href="/webtoon/detail?titleId=733074&no=104"
+											title="백수세끼"
+										>
+											<img
+												onerror="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/blank.gif'"
+												id="recommand_thumbnail_2"
+												src="https://shared-comic.pstatic.net/thumb/webtoon/733074/thumbnail/thumbnail_IMAG10_0741d1f6-2bae-474b-87ae-6f1a69988808.jpg"
+												width="30"
+												height="33"
+												alt="백수세끼"
+											/>
+											<span class="mask"></span>
+										</a>
+									</div>
+									<div class="rc_info">
+										<a
+											id="recommand_titleName_2"
+											href="/webtoon/detail?titleId=733074&no=104"
+											class="tit"
+											title="백수세끼"
+											>백수세끼</a
+										>
+										<em
+											><a
+												id="recommand_painter_2"
+												href="#"
+												onclick="return artistAction.viewArtist('733074', this);"
+												title="치즈"
+												>치즈</a
+											></em
+										>
+										<span class="rankBox2">
+											<img
+												id="recommand_img_2"
+												src="https://ssl.pstatic.net/static/comic/images/migration/common/arrow_no.gif"
+												title="변동없음"
+												alt="변동없음"
+											/><em id="recommand_rank_2">0</em>
+										</span>
+									</div>
+								</li>
+
+								<li id="recommandLi_3" class="rank04">
+									<div class="thumb6">
+										<a
+											id="recommand_link_3"
+											href="/webtoon/detail?titleId=183559&no=517"
+											title="신의 탑"
+										>
+											<img
+												onerror="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/blank.gif'"
+												id="recommand_thumbnail_3"
+												src="https://shared-comic.pstatic.net/thumb/webtoon/183559/thumbnail/thumbnail_IMAG10_9a752bec-9ebd-4214-9449-28cf4defc650.jpg"
+												width="30"
+												height="33"
+												alt="신의 탑"
+											/>
+											<span class="mask"></span>
+										</a>
+									</div>
+									<div class="rc_info">
+										<a
+											id="recommand_titleName_3"
+											href="/webtoon/detail?titleId=183559&no=517"
+											class="tit"
+											title="신의 탑"
+											>신의 탑</a
+										>
+										<em
+											><a
+												id="recommand_painter_3"
+												href="#"
+												onclick="return artistAction.viewArtist('183559', this);"
+												title="SIU"
+												>SIU</a
+											></em
+										>
+										<span class="rankBox2">
+											<img
+												id="recommand_img_3"
+												src="https://ssl.pstatic.net/static/comic/images/migration/common/arrow_no.gif"
+												title="변동없음"
+												alt="변동없음"
+											/><em id="recommand_rank_3">0</em>
+										</span>
+									</div>
+								</li>
+
+								<li id="recommandLi_4" class="rank05">
+									<div class="thumb6">
+										<a
+											id="recommand_link_4"
+											href="/webtoon/detail?titleId=783054&no=16"
+											title="쇼미더럭키짱!"
+										>
+											<img
+												onerror="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/blank.gif'"
+												id="recommand_thumbnail_4"
+												src="https://shared-comic.pstatic.net/thumb/webtoon/783054/thumbnail/thumbnail_IMAG10_6917f3d9-c5bb-4bfd-aa04-a288f7b252af.jpg"
+												width="30"
+												height="33"
+												alt="쇼미더럭키짱!"
+											/>
+											<span class="mask"></span>
+										</a>
+									</div>
+									<div class="rc_info">
+										<a
+											id="recommand_titleName_4"
+											href="/webtoon/detail?titleId=783054&no=16"
+											class="tit"
+											title="쇼미더럭키짱!"
+											>쇼미더럭키짱!</a
+										>
+										<em
+											><a
+												id="recommand_painter_4"
+												href="#"
+												onclick="return artistAction.viewArtist('783054', this);"
+												title="박태준 / 김성모"
+												>박태준 / 김성모</a
+											></em
+										>
+										<span class="rankBox2">
+											<img
+												id="recommand_img_4"
+												src="https://ssl.pstatic.net/static/comic/images/migration/common/arrow_up.gif"
+												title="순위상승"
+												alt="순위하락"
+											/><em id="recommand_rank_4">1</em>
+										</span>
+									</div>
+								</li>
+							</ol>
+						</div>
+					</div>
+					<script>
+						new naver.comic.RecommandWebtoonRankLayer(
+							3,
+							'https://shared-comic.pstatic.net/thumb'
+						);
+					</script>
+					<!-- //추천 웹툰 -->
+
+					<!-- 공지사항 -->
+					<div class="asideBox">
+						<h4 class="asideBoxTitle">
+							<img
+								src="https://ssl.pstatic.net/static/comic/images/migration/common/subtlt_r_notice.gif"
+								title="공지사항"
+								alt="공지사항"
+								width="43"
+								height="12"
+							/>
+						</h4>
+
+						<ul class="asideBoxNotice">
+							<li>
+								<a
+									onclick="nclk_v2(event,'sna.not','529','1')"
+									href="/notice/detail?noticeId=529"
+									title="2021 네이버웹툰 로맨스 공모전 수상작 발표"
+								>
+									<strong>
+										2021 네이버웹툰 로맨스 공모전 수상작 발표
+									</strong>
+								</a>
+							</li>
+
+							<li>
+								<a
+									onclick="nclk_v2(event,'sna.not','495','2')"
+									href="/notice/detail?noticeId=495"
+									title="(new) 네이버웹툰 연재 작가를 모십니다! "
+								>
+									<strong>
+										(new) 네이버웹툰 연재 작가를 모십니다
+									</strong>
+								</a>
+							</li>
+
+							<li>
+								<a
+									onclick="nclk_v2(event,'sna.not','503','3')"
+									href="/notice/detail?noticeId=503"
+									title="[공지] 요일별 연재작품 회차 업데이트 시간 안내"
+								>
+									요일별 연재작 회차업데이트 시간안내
+								</a>
+							</li>
+
+							<li>
+								<a
+									onclick="nclk_v2(event,'sna.not','521','4')"
+									href="/notice/detail?noticeId=521"
+									title="[출시] 새로운 웹툰 라인업! <매일+>에서 만나보세요! "
+								>
+									<strong>
+										[출시] 새로운 웹툰 라인업! &lt;매일+&gt;
+									</strong>
+								</a>
+							</li>
+
+							<li>
+								<a
+									onclick="nclk_v2(event,'sna.not','523','5')"
+									href="/notice/detail?noticeId=523"
+									title="<추천완결> 이용방법 변경 안내"
+								>
+									추천완결 이용방법 변경 안내
+								</a>
+							</li>
+
+							<li>
+								<a
+									onclick="nclk_v2(event,'sna.not','526','6')"
+									href="/notice/detail?noticeId=526"
+									title="#내돈내툰, 우리가 웹툰을 즐기는 방법"
+								>
+									#내돈내툰, 우리가 웹툰을 즐기는 방법
+								</a>
+							</li>
+
+							<li>
+								<a
+									onclick="nclk_v2(event,'sna.not','527','7')"
+									href="/notice/detail?noticeId=527"
+									title="2021년 12월 유료화 전환 작품 안내"
+								>
+									2021년 12월 유료화 전환 작품 안내
+								</a>
+							</li>
+						</ul>
+
+						<a
+							onclick="nclk_v2(event,'sna.more')"
+							href="/notice/list"
+							class="asideBoxMore"
+						>
+							<span class="blind">공지사항</span> 더보기
+						</a>
+					</div>
+					<!-- //공지사항 -->
+
+					<div class="asideBanner">
+						<a onclick="nclk_v2(event,'sna.proposal');" href="/business/proposalGuide">
+							<img
+								src="https://ssl.pstatic.net/static/comic/images/bnr_partnership.jpg"
+								width="240"
+								height="86"
+								alt="웹툰, 웹소설 온라인 광고 판권 사업"
+							/>
+						</a>
+					</div>
+
+					<div class="asideBanner">
+						<a
+							onclick="nclk_v2(event,'sna.writerproposal');"
+							href="https://joinus.comic.naver.com"
+						>
+							<img
+								src="https://ssl.pstatic.net/static/comic/images/bnr_joinus.jpg"
+								width="240"
+								height="86"
+								alt="연재 경력 작가 웹툰 차기작 제안"
+							/>
+						</a>
+					</div>
+
+					<div class="asideBanner">
+						<a
+							onclick="nclk_v2(event,'sna.recruit');"
+							href="https://recruit.webtoonscorp.com"
+						>
+							<img
+								src="https://ssl.pstatic.net/static/comic/images/bnr_careers.jpg"
+								width="240"
+								height="86"
+								alt="웹툰 채용공고 CAREERS"
+							/>
+						</a>
+					</div>
+
+					<div class="asideButton">
+						<a
+							class="btn_faq"
+							onclick="nclk_v2(event,'sna.faq')"
+							href="https://help.naver.com/support/service/main.help?serviceNo=799"
+							target="_blank"
+							title="새 창"
+						>
+							<span class="blind">웹툰 고객센터</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Footer -->
+
+			<!-- FOOTER Start -->
+			<div id="footer">
+				<div class="naver_corp_info">
+					<ul>
+						<li>
+							<a
+								href="https://www.naver.com/rules/service.html"
+								onClick="nclk_v2(event,'fot.agreement')"
+								target="_blank"
+								>이용약관</a
+							>
+						</li>
+						<li>
+							<a
+								href="https://www.naver.com/rules/privacy.html"
+								onclick="nclk_v2(event,'fot.privacy')"
+								target="_blank"
+								class="privacy"
+								>개인정보처리방침</a
+							>
+						</li>
+						<li>
+							<a
+								href="https://www.naver.com/rules/disclaimer.html"
+								onclick="nclk_v2(event,'fot.disclaimer')"
+								target="_blank"
+								>책임의 한계와 법적고지</a
+							>
+						</li>
+						<li>
+							<a
+								href="https://help.naver.com/support/home.help?serviceNo=799"
+								onclick="nclk_v2(event,'fot.helpdesk')"
+								target="_blank"
+								title="새 창"
+								>고객센터</a
+							>
+						</li>
+						<li>
+							<a
+								href="/business/proposalGuide#ad"
+								onClick="nclk_v2(event,'fot.proposal')"
+								target="_blank"
+								>웹툰 광고 문의</a
+							>
+						</li>
+					</ul>
+					<address>
+						<a
+							href="https://www.navercorp.com/"
+							target="_blank"
+							onclick="nclk_v2(event,'fot.navercorp')"
+							><span class="naver_corp_link"
+								><span class="blind">ⓒ NAVER CORP.</span></span
+							></a
+						>
+					</address>
+				</div>
+
+				<div class="webtoon_corp_info">
+					<ul>
+						<li>
+							<a
+								href="https://member.webtoon.naver.com/policies/terms/"
+								target="_blank"
+								>이용약관</a
+							>
+						</li>
+						<li>
+							<a
+								href="https://member.webtoon.naver.com/policies/privacy/"
+								target="_blank"
+								class="privacy"
+								>개인정보처리방침</a
+							>
+						</li>
+						<li>
+							<a
+								href="https://member.webtoon.naver.com/policies/youthpolicy/"
+								target="_blank"
+								>청소년보호정책</a
+							>
+						</li>
+						<li>
+							<a
+								href="https://help.naver.com/support/service/main.help?serviceNo=799"
+								target="_blank"
+								>웹툰 고객센터</a
+							>
+						</li>
+						<li>
+							<a href="/business/proposalGuide" target="_blank">웹툰 사업 문의</a>
+						</li>
+					</ul>
+					<address>
+						<a
+							onclick="nclk_v2(event,'fot.wtcorp');"
+							href="https://webtoonscorp.com"
+							class="webtoon_corp_link"
+							target="_blank"
+							><span class="blind">ⓒ NAVER WEBTOON Limited</span></a
+						>
+					</address>
+				</div>
+
+				<p class="copyright_law">
+					본 콘텐츠의 저작권은 저자 또는 제공처에 있으며, 이를 무단 이용하는 경우 저작권법
+					등에 따라 법적 책임을 질 수 있습니다.
+				</p>
+			</div>
+			<!-- //FOOTER End -->
+		</div>
+
+		<script type="text/javascript">
+			var agent = navigator.userAgent.toLowerCase();
+
+			function loadEvent() {
+				try {
+					getGNB();
+				} catch (ex) {}
+				new naver.comic.RealtimeRankLayer();
+				if ($('uploadLinkId')) {
+					$Fn(function (oEvent) {
+						oEvent.stop();
+						if ('true' != 'false') {
+							if (!confirm('로그인해야 이용할 수 있습니다. 로그인 하겠습니까?'))
+								return false;
+							else {
+								location.href =
+									'https://nid.naver.com/nidlogin.login?mode=form&url=' +
+									encodeURIComponent(
+										'https://' + location.host + '/upload/upload'
+									);
+								return;
+							}
+						}
+						location.href = '/upload/upload';
+						return true;
+					}).attach($('uploadLinkId'), 'click');
+				}
+				naver.comic.oArtistAction = new naver.comic.Artist();
+				artistAction = naver.comic.oArtistAction;
+				naver.comic.oSearchBar = new naver.comic.SearchBarOptionActHandler();
+
+				// GNB 이벤트 재정의.
+				$Fn(function (oEvent) {
+					var aWtChild = $Element('gnb').child(function (v) {
+						return true;
+					});
+					var wtSrc = $Element(oEvent.element);
+					var bContain = false;
+					for (var i = 0; i < aWtChild.length; i++) {
+						if (aWtChild[i].$value() == wtSrc.$value()) {
+							bContain = true;
+							break;
+						}
+					}
+					if (!bContain && gnbAllLayerClose) {
+						gnbAllLayerClose();
+					}
+				}).attach(document, 'click');
+			}
+			$Fn(loadEvent).attach(window, 'load');
+		</script>
+
+		<script
+			type="text/javascript"
+			src="/aggregate/javascript/release/lcslog_20211206150112.js"
+		></script>
+
+		<script type="text/javascript">
+			try {
+				var eventType = 'onpageshow' in window ? 'onpageshow' : 'onload';
+				var oldEvent = window[eventType];
+				window[eventType] = function () {
+					if (oldEvent) {
+						oldEvent();
+					}
+					lcs_do();
+				};
+			} catch (ex) {}
+		</script>
+	</body>
+</html>
