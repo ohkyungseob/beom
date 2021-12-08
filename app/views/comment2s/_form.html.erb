@@ -1,0 +1,17 @@
+<%= form_with(model: comment2, local: true) do |form| %>
+
+  <div class="field">
+    <%= form.hidden_field :episode_id, value: @episode.id %>
+  </div>
+
+  
+
+  <div class="field">
+    <%= form.label :usercomment2 %>
+    <%= form.text_area :usercomment2 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

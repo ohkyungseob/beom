@@ -12,6 +12,8 @@ class EpisodesController < ApplicationController
 	  @buy = Buy.new
 	  @webtoons = Webtoon.all
 	  @webtoon = Webtoon.new
+	  @comment2s = Comment2.where(episode_id: @episode.id)
+	  @comment2 = Comment2.new
   end
 
   # GET /episodes/new
@@ -29,7 +31,7 @@ class EpisodesController < ApplicationController
 
     respond_to do |format|
       if @episode.save
-        format.html { redirect_to @episode, notice: "Episode was successfully created." }
+        format.html { redirect_to episode_path(@comment2.episode_id) }
         format.json { render :show, status: :created, location: @episode }
       else
         format.html { render :new, status: :unprocessable_entity }

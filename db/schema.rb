@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_08_101427) do
+ActiveRecord::Schema.define(version: 2021_12_08_125036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 2021_12_08_101427) do
     t.datetime "updated_at", null: false
     t.index ["episode_id"], name: "index_buys_on_episode_id"
     t.index ["webtoon_id"], name: "index_buys_on_webtoon_id"
+  end
+
+  create_table "comment2s", force: :cascade do |t|
+    t.bigint "episode_id"
+    t.bigint "user_id"
+    t.text "usercomment2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["episode_id"], name: "index_comment2s_on_episode_id"
+    t.index ["user_id"], name: "index_comment2s_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -83,6 +93,8 @@ ActiveRecord::Schema.define(version: 2021_12_08_101427) do
 
   add_foreign_key "buys", "episodes"
   add_foreign_key "buys", "webtoons"
+  add_foreign_key "comment2s", "episodes"
+  add_foreign_key "comment2s", "users"
   add_foreign_key "comments", "episodes"
   add_foreign_key "episodes", "webtoons"
 end

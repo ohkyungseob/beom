@@ -649,8 +649,21 @@
 	</body>
 				
 				<br><br><br><br>
+				
+				
 
 				
 </html>
 				
 </div>
+		<h4>댓글<%= @comment2s.size %>개</h4>
+		<ul>
+			<% @comment2s.each do |comment2| %>
+			<li><td><%= comment2.usercomment2 %></li>
+		<% end %>
+		</ul>
+		
+			
+		</ul>
+		
+		<%= render 'comment2s/form', comment2: @comment2 %>

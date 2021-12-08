@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Comment2s</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Episode</th>
+      <th>User</th>
+      <th>Usercomment2</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comment2s.each do |comment2| %>
+      <tr>
+        <td><%= comment2.episode %></td>
+        <td><%= comment2.user %></td>
+        <td><%= comment2.usercomment2 %></td>
+        <td><%= link_to 'Show', comment2 %></td>
+        <td><%= link_to 'Edit', edit_comment2_path(comment2) %></td>
+        <td><%= link_to 'Destroy', comment2, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Comment2', new_comment2_path %>
