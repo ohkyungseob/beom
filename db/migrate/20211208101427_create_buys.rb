@@ -8,3 +8,5 @@ class CreateBuys < ActiveRecord::Migration[5.2]
     end
   end
 end
+
+

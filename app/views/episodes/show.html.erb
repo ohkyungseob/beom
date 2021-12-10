@@ -1,4 +1,5 @@
 
+
 <p id="notice"><%= notice %></p>
 
 <style>
@@ -362,7 +363,7 @@
 							>
 							<a
 								onclick="nclk_v2(event,'STA.comic')"
-								href="/naverwebtoon"
+								href="/homes"
 								title="만화"
 								class="Ntxt_comic"
 								>만화</a
@@ -575,9 +576,9 @@
 								href="/webtoon/list?titleId=758037"
 							>
 								<img
-									src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG06_794bcc1e-23aa-4c35-a335-b5d21b4bc2ab.jpg"
-									title="참교육"
-									alt="참교육"
+									src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20110830_190%2Ftink9455_13146906277560lYrr_JPEG%2F37.jpg&type=a340"
+									title="오픈소스SW"
+									alt="오픈소스SW"
 									width="125"
 									height="101"
 									onERROR="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/non125_101.gif'"
@@ -586,7 +587,7 @@
 							</a>
 						</div>
 						<div class="detail">
-							<% @webtoons.each do |webtoon| %>
+							<% @webtoons.first(1).each do |webtoon| %>
 							<h2>
 								<%= webtoon.webtoonname %><span class="wrt_nm">
 									<%= webtoon.author %></span
@@ -657,18 +658,17 @@
 
 				
 </html>
-		<h4>댓글<%= @comment2s.size %>개</h4>
+		<h2>댓글<%= @comment2s.size %>개</h2><br>
 		<ul>
 			<% @comment2s.each do |comment2| %>
+			<h3>
+				
 			<li><%= comment2.usercomment2 %></li>
-			<li><%= comment2.created_at %></li><br />
+			<li><%= comment2.created_at %></li><br /></h3>
 			
 		<% end %>
 		</ul>
-		
-			
-		</ul>
-		
+	
 		<%= render 'comment2s/form', comment2: @comment2 %>		
 </div>
 		

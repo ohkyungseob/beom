@@ -3013,7 +3013,7 @@
 							>
 							<a
 								onclick="nclk_v2(event,'STA.comic')"
-								href="/naverwebtoon"
+								href="/homes"
 								title="만화"
 								class="Ntxt_comic"
 								>만화</a
@@ -3418,21 +3418,23 @@
 											>
 												<img
 													onerror="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/blank.gif'"
-													src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg"
+													src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20110830_190%2Ftink9455_13146906277560lYrr_JPEG%2F37.jpg&type=a340"
 													width="83"
 													height="90"
-													title="참교육"
-													alt="참교육"
+													title="오픈소스SW"
+													alt="오픈소스SW"
 												/><span class="mask"></span>
 											</a>
 										</div>
+										<% @webtoons.first(1).each do |webtoon| %>
 										<a
 											href="webtoons/1"
 											onclick="nclk_v2(event,'thm*m.tit','','1')"
 											class="title"
-											title="참교육"
-											>참교육</a
+											title="오픈소스SW"
+											><%= webtoon.webtoonname %></a
 										>
+										<% end %>
 									</li>
 
 									<li>

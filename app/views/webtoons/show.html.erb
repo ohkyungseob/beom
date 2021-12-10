@@ -347,7 +347,7 @@
 							>
 							<a
 								onclick="nclk_v2(event,'STA.comic')"
-								href="/naverwebtoon"
+								href="/homes"
 								title="만화"
 								class="Ntxt_comic"
 								>만화</a
@@ -560,9 +560,9 @@
 								href="/webtoon/list?titleId=758037"
 							>
 								<img
-									src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG06_794bcc1e-23aa-4c35-a335-b5d21b4bc2ab.jpg"
-									title="참교육"
-									alt="참교육"
+									src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20110830_190%2Ftink9455_13146906277560lYrr_JPEG%2F37.jpg&type=a340"
+									title="오픈소스SW"
+									alt="오픈소스SW"
 									width="125"
 									height="101"
 									onERROR="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/non125_101.gif'"
@@ -634,7 +634,7 @@
 						<thead>
 							<tr>
 								<th scope="col">이미지</th>
-								<th scope="col">쿠키개수</th>
+								<th scope="col">유료 / 무료</th>
 								<th scope="col">별점</th>
 								<th scope="col">등록일</th>
 							</tr>
@@ -654,11 +654,11 @@
 						<tr>
 							<td>
 								<a
-									href="/list/buy"
+									href="/buys/1"
 									onclick="nclk_v2(event,'lst.img','758037','57')"
 								>
 									<img
-										src="https://shared-comic.pstatic.net/thumb/webtoon/758037/57/thumbnail_202x120_1c148d7a-ed62-462b-95b9-ffa67a2ae03d.jpg"
+										src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTEwMjhfMTg0%2FMDAxNjM1NDAwOTE2MzM0.j2laPZZgID3mldWFfv7ec8eI1G6bNuv_u-4jS-35EUwg.uCIeZ97IeLPD4gYRrfoZPuOgqAf2gDRCivJxLay2HYMg.JPEG.whdmswn1999%2FIMG_5508.jpg&type=a340"
 										title="57화"
 										alt="57화"
 										width="71"
@@ -670,15 +670,15 @@
 							</td>
 							
 							
-			<% @episodes.each do |episode| %>
+			<% @episodes.first(1).each do |episode| %>
 							<td class="title">
 								<a
-									href="/list/buy"
+									href="/buys/1"
 									onclick="nclk_v2(event,'lst.title','758037','57')"
 									><%= episode.round %>화</a
 								>
 							
-								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 								<a href="/buys/1" >쿠키<%= episode.cookiecount %>개 사용</a>
 								
 							</td>
@@ -700,7 +700,7 @@
 									onclick="nclk_v2(event,'lst.img','758037','56')"
 								>
 									<img
-										src="https://shared-comic.pstatic.net/thumb/webtoon/758037/56/thumbnail_202x120_465c6b6b-077b-450b-bd82-c5339f60d1a0.jpg"
+										src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTEwMjhfMTg0%2FMDAxNjM1NDAwOTE2MzM0.j2laPZZgID3mldWFfv7ec8eI1G6bNuv_u-4jS-35EUwg.uCIeZ97IeLPD4gYRrfoZPuOgqAf2gDRCivJxLay2HYMg.JPEG.whdmswn1999%2FIMG_5508.jpg&type=a340"
 										title="56화"
 										alt="56화"
 										width="71"
@@ -716,6 +716,9 @@
 									onclick="nclk_v2(event,'lst.title','758037','56')"
 									>56화</a
 								>
+								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								무료
+								
 							</td>
 							<td>
 								<div class="rating_type">
@@ -732,7 +735,7 @@
 									onclick="nclk_v2(event,'lst.img','758037','55')"
 								>
 									<img
-										src="https://shared-comic.pstatic.net/thumb/webtoon/758037/55/thumbnail_202x120_823ef0d8-8481-4904-b707-ca490098dbd6.jpg"
+										src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTEwMjhfMTg0%2FMDAxNjM1NDAwOTE2MzM0.j2laPZZgID3mldWFfv7ec8eI1G6bNuv_u-4jS-35EUwg.uCIeZ97IeLPD4gYRrfoZPuOgqAf2gDRCivJxLay2HYMg.JPEG.whdmswn1999%2FIMG_5508.jpg&type=a340"
 										title="55화"
 										alt="55화"
 										width="71"
@@ -748,6 +751,8 @@
 									onclick="nclk_v2(event,'lst.title','758037','55')"
 									>55화</a
 								>
+								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								무료
 							</td>
 							<td>
 								<div class="rating_type">
@@ -764,7 +769,7 @@
 									onclick="nclk_v2(event,'lst.img','758037','54')"
 								>
 									<img
-										src="https://shared-comic.pstatic.net/thumb/webtoon/758037/54/thumbnail_202x120_dbec916f-8064-4f95-9af9-4b234318e46f.jpg"
+										src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTEwMjhfMTg0%2FMDAxNjM1NDAwOTE2MzM0.j2laPZZgID3mldWFfv7ec8eI1G6bNuv_u-4jS-35EUwg.uCIeZ97IeLPD4gYRrfoZPuOgqAf2gDRCivJxLay2HYMg.JPEG.whdmswn1999%2FIMG_5508.jpg&type=a340"
 										title="54화"
 										alt="54화"
 										width="71"
@@ -780,6 +785,8 @@
 									onclick="nclk_v2(event,'lst.title','758037','54')"
 									>54화</a
 								>
+								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								무료
 							</td>
 							<td>
 								<div class="rating_type">
@@ -796,7 +803,7 @@
 									onclick="nclk_v2(event,'lst.img','758037','53')"
 								>
 									<img
-										src="https://shared-comic.pstatic.net/thumb/webtoon/758037/53/thumbnail_202x120_64dd1a9e-73ba-4136-8ee0-a0cb326829d1.jpg"
+										src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTEwMjhfMTg0%2FMDAxNjM1NDAwOTE2MzM0.j2laPZZgID3mldWFfv7ec8eI1G6bNuv_u-4jS-35EUwg.uCIeZ97IeLPD4gYRrfoZPuOgqAf2gDRCivJxLay2HYMg.JPEG.whdmswn1999%2FIMG_5508.jpg&type=a340"
 										title="53화"
 										alt="53화"
 										width="71"
@@ -812,6 +819,8 @@
 									onclick="nclk_v2(event,'lst.title','758037','53')"
 									>53화</a
 								>
+								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								무료
 							</td>
 							<td>
 								<div class="rating_type">
@@ -828,7 +837,7 @@
 									onclick="nclk_v2(event,'lst.img','758037','52')"
 								>
 									<img
-										src="https://shared-comic.pstatic.net/thumb/webtoon/758037/52/thumbnail_202x120_e431c87d-35ab-4a24-b4c2-d6ac1ca71a3c.jpg"
+										src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTEwMjhfMTg0%2FMDAxNjM1NDAwOTE2MzM0.j2laPZZgID3mldWFfv7ec8eI1G6bNuv_u-4jS-35EUwg.uCIeZ97IeLPD4gYRrfoZPuOgqAf2gDRCivJxLay2HYMg.JPEG.whdmswn1999%2FIMG_5508.jpg&type=a340"
 										title="52화"
 										alt="52화"
 										width="71"
@@ -844,6 +853,8 @@
 									onclick="nclk_v2(event,'lst.title','758037','52')"
 									>52화</a
 								>
+								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								무료
 							</td>
 							<td>
 								<div class="rating_type">
@@ -860,7 +871,7 @@
 									onclick="nclk_v2(event,'lst.img','758037','51')"
 								>
 									<img
-										src="https://shared-comic.pstatic.net/thumb/webtoon/758037/51/thumbnail_202x120_6c2779c9-f50e-450d-96af-1cb0d177f293.jpg"
+										src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTEwMjhfMTg0%2FMDAxNjM1NDAwOTE2MzM0.j2laPZZgID3mldWFfv7ec8eI1G6bNuv_u-4jS-35EUwg.uCIeZ97IeLPD4gYRrfoZPuOgqAf2gDRCivJxLay2HYMg.JPEG.whdmswn1999%2FIMG_5508.jpg&type=a340"
 										title="51화"
 										alt="51화"
 										width="71"
@@ -876,6 +887,8 @@
 									onclick="nclk_v2(event,'lst.title','758037','51')"
 									>51화</a
 								>
+								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								무료
 							</td>
 							<td>
 								<div class="rating_type">
@@ -892,7 +905,7 @@
 									onclick="nclk_v2(event,'lst.img','758037','50')"
 								>
 									<img
-										src="https://shared-comic.pstatic.net/thumb/webtoon/758037/50/thumbnail_202x120_54406bf2-6384-41f4-941d-be2001fb8170.jpg"
+										src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTEwMjhfMTg0%2FMDAxNjM1NDAwOTE2MzM0.j2laPZZgID3mldWFfv7ec8eI1G6bNuv_u-4jS-35EUwg.uCIeZ97IeLPD4gYRrfoZPuOgqAf2gDRCivJxLay2HYMg.JPEG.whdmswn1999%2FIMG_5508.jpg&type=a340"
 										title="50화"
 										alt="50화"
 										width="71"
@@ -908,6 +921,8 @@
 									onclick="nclk_v2(event,'lst.title','758037','50')"
 									>50화</a
 								>
+								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								무료
 							</td>
 							<td>
 								<div class="rating_type">
@@ -924,7 +939,7 @@
 									onclick="nclk_v2(event,'lst.img','758037','49')"
 								>
 									<img
-										src="https://shared-comic.pstatic.net/thumb/webtoon/758037/49/thumbnail_202x120_31fc9d78-b90c-4e39-8e9b-74424b3ba734.jpg"
+										src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTEwMjhfMTg0%2FMDAxNjM1NDAwOTE2MzM0.j2laPZZgID3mldWFfv7ec8eI1G6bNuv_u-4jS-35EUwg.uCIeZ97IeLPD4gYRrfoZPuOgqAf2gDRCivJxLay2HYMg.JPEG.whdmswn1999%2FIMG_5508.jpg&type=a340"
 										title="49화"
 										alt="49화"
 										width="71"
@@ -940,6 +955,8 @@
 									onclick="nclk_v2(event,'lst.title','758037','49')"
 									>49화</a
 								>
+								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								무료
 							</td>
 							<td>
 								<div class="rating_type">
@@ -956,7 +973,7 @@
 									onclick="nclk_v2(event,'lst.img','758037','48')"
 								>
 									<img
-										src="https://shared-comic.pstatic.net/thumb/webtoon/758037/48/thumbnail_202x120_413ca811-2aa3-451b-aac6-b770193cc442.jpg"
+										src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTEwMjhfMTg0%2FMDAxNjM1NDAwOTE2MzM0.j2laPZZgID3mldWFfv7ec8eI1G6bNuv_u-4jS-35EUwg.uCIeZ97IeLPD4gYRrfoZPuOgqAf2gDRCivJxLay2HYMg.JPEG.whdmswn1999%2FIMG_5508.jpg&type=a340"
 										title="48화"
 										alt="48화"
 										width="71"
@@ -972,6 +989,8 @@
 									onclick="nclk_v2(event,'lst.title','758037','48')"
 									>48화</a
 								>
+								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								무료
 							</td>
 							<td>
 								<div class="rating_type">

@@ -9,3 +9,6 @@ class CreateComment2s < ActiveRecord::Migration[5.2]
     end
   end
 end
+
+rails g scaffold comment2 usercomment2:text episode:references user:references
+

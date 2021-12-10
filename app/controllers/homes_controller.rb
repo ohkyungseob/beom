@@ -4,6 +4,7 @@ class HomesController < ApplicationController
   # GET /homes or /homes.json
   def index
     @homes = Home.all
+	@webtoons = Webtoon.all
   end
 
   # GET /homes/1 or /homes/1.json
